@@ -1,0 +1,5339 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UAS Portofolio - Putri Fadhilah Roslin</title>
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* ==========================================================================
+           SISTEM DESAIN & VARIABEL WARNA (AESTHETIC SOFT BLUE, WHITE, SOFT PINK)
+           ========================================================================== */
+      :root {
+        --primary-blue: #1d4ed8; /* Royal Blue */
+        --light-blue: #eff6ff; /* Soft Pastel Blue Background */
+        --accent-pink: #f472b6; /* Vivid Soft Pink */
+        --soft-pink-bg: #fdf2f8; /* Soft Pink Warm Background */
+        --dark-navy: #0f172a; /* Charcoal Navy */
+        --slate-gray: #475569; /* Subtitle Slate Gray */
+        --white: #ffffff;
+        --glass-bg: rgba(255, 255, 255, 0.85);
+        --glass-border: rgba(255, 255, 255, 0.5);
+        --border-color: #e2e8f0;
+        --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 10px 25px -5px rgba(29, 78, 216, 0.07);
+        --shadow-lg: 0 20px 40px -15px rgba(244, 114, 182, 0.15);
+        --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      /* ==========================================================================
+           LATAR BELAKANG ELEGAN DENGAN BLOB BERANIMASI
+           ========================================================================== */
+      .blob-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -2;
+        background:
+          radial-gradient(
+            circle at 0% 0%,
+            var(--light-blue) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 100% 100%,
+            var(--soft-pink-bg) 0%,
+            transparent 50%
+          ),
+          #fafaf9;
+        overflow: hidden;
+      }
+
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.35;
+        animation: float 25s infinite ease-in-out alternate;
+        z-index: -1;
+      }
+
+      .blob-1 {
+        width: 450px;
+        height: 450px;
+        background: var(--primary-blue);
+        top: -10%;
+        left: 5%;
+        animation-delay: 0s;
+      }
+
+      .blob-2 {
+        width: 550px;
+        height: 550px;
+        background: var(--accent-pink);
+        bottom: -10%;
+        right: 5%;
+        animation-delay: -6s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(0, 0) scale(1) rotate(0deg);
+        }
+        50% {
+          transform: translate(60px, 40px) scale(1.1) rotate(180deg);
+        }
+        100% {
+          transform: translate(-30px, -60px) scale(0.95) rotate(360deg);
+        }
+      }
+
+      /* ==========================================================================
+           RESET ATURAN GLOBAL & LAYOUT RESPONSIVE
+           ========================================================================== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        color: var(--dark-navy);
+        overflow-x: hidden;
+        background: transparent;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Kustomisasi Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--light-blue);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--accent-pink);
+        border-radius: 4px;
+      }
+
+      /* ==========================================================================
+           NAVBAR UTAMA - DESAIN GLASSMORPHISM RESPONSIVE
+           ========================================================================== */
+      .navbar {
+        position: fixed;
+        top: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 95%;
+        max-width: 1200px;
+        background: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        box-shadow: var(--shadow-md);
+        z-index: 1000;
+        transition: var(--transition);
+      }
+
+      .navbar.shrink {
+        top: 0;
+        width: 100%;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 1.5rem;
+      }
+
+      .nav-logo {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--primary-blue);
+        text-decoration: none;
+        letter-spacing: -1px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .nav-logo span {
+        color: var(--accent-pink);
+        font-weight: 400;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .nav-link {
+        color: var(--dark-navy);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+        border-radius: 14px;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--primary-blue);
+        background: rgba(29, 78, 216, 0.08);
+      }
+
+      /* Menu Dropdown Artefak */
+      .dropdown {
+        position: relative;
+        padding-bottom: 5px;
+        margin-bottom: -5px;
+      }
+
+      .dropdown-menu-list {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(5px);
+        background: var(--white);
+        box-shadow: 0 15px 30px rgba(15, 23, 42, 0.08);
+        border: 1px solid var(--border-color);
+        border-radius: 18px;
+        padding: 0.5rem;
+        min-width: 230px;
+        display: none;
+        list-style: none;
+        opacity: 0;
+        transition: var(--transition);
+      }
+
+      .dropdown-menu-list li a {
+        display: block;
+        padding: 0.65rem 1.1rem;
+        color: var(--dark-navy);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.8rem;
+        border-radius: 10px;
+        transition: var(--transition);
+      }
+
+      .dropdown-menu-list li a:hover {
+        background-color: var(--soft-pink-bg);
+        color: var(--accent-pink);
+        transform: translateX(4px);
+      }
+
+      .dropdown:hover .dropdown-menu-list {
+        display: block;
+        opacity: 1;
+      }
+
+      /* Tombol Hamburger Mobile */
+      .hamburger {
+        display: none;
+        cursor: pointer;
+      }
+
+      .bar {
+        display: block;
+        width: 22px;
+        height: 2.5px;
+        margin: 4px auto;
+        background-color: var(--dark-navy);
+        transition: var(--transition);
+        border-radius: 2px;
+      }
+
+      /* ==========================================================================
+           STYLING KONTEN UTAMA DAN TATA LETAK SECTION
+           ========================================================================== */
+      .main-content {
+        max-width: 1200px;
+        margin: 120px auto 4rem auto;
+        padding: 0 1rem;
+      }
+
+      .page-section {
+        display: none;
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .page-section.active {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ==========================================================================
+           HERO SECTION - LAYOUT BERANDA
+           ========================================================================== */
+      .hero {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 3rem;
+        align-items: center;
+        padding: 2.5rem 0;
+      }
+
+      .hero-text h2 {
+        font-size: 1.1rem;
+        color: var(--primary-blue);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .hero-text h1 {
+        font-size: 3.2rem;
+        line-height: 1.2;
+        font-weight: 800;
+        color: var(--dark-navy);
+        margin-bottom: 1.2rem;
+        letter-spacing: -1px;
+      }
+
+      .text-gradient {
+        background: linear-gradient(
+          135deg,
+          var(--primary-blue) 30%,
+          var(--accent-pink) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .tagline-box {
+        border-left: 4px solid var(--accent-pink);
+        padding-left: 1.2rem;
+        margin-bottom: 1.5rem;
+        font-style: italic;
+        font-size: 1.1rem;
+        color: var(--slate-gray);
+        line-height: 1.6;
+      }
+
+      .hero-text p.desc {
+        font-size: 0.95rem;
+        color: var(--slate-gray);
+        margin-bottom: 2rem;
+        line-height: 1.7;
+      }
+
+      /* Siluet Ilustrasi Profil */
+      .hero-image-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .profile-glow {
+        position: absolute;
+        width: 300px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(244, 114, 182, 0.25) 0%,
+          rgba(29, 78, 216, 0.08) 70%,
+          transparent 100%
+        );
+        border-radius: 50%;
+        filter: blur(25px);
+        z-index: -1;
+        animation: pulseGlow 4s infinite alternate;
+      }
+
+      .fullbody-image {
+        width: 100%;
+        max-width: 350px;
+        height: 480px;
+        object-fit: contain;
+        border-radius: 24px;
+        transition: var(--transition);
+        filter: drop-shadow(0 15px 25px rgba(15, 23, 42, 0.12));
+      }
+
+      .fullbody-image:hover {
+        transform: scale(1.02) translateY(-5px);
+      }
+
+      @keyframes pulseGlow {
+        0% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(1.1);
+          opacity: 1;
+        }
+      }
+
+      /* ==========================================================================
+           PEMISAHAN LPTK DAN SEKOLAH PPL
+           ========================================================================== */
+      .campus-school-section {
+        padding: 4rem 0;
+      }
+
+      .institution-container {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+      }
+
+      .institution-card {
+        background: var(--white);
+        border-radius: 24px;
+        padding: 2rem;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-color);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .institution-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          var(--primary-blue),
+          var(--accent-pink)
+        );
+      }
+
+      .inst-header {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .inst-icon {
+        width: 54px;
+        height: 54px;
+        background: var(--soft-pink-bg);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--accent-pink);
+        flex-shrink: 0;
+      }
+
+      .inst-details h3 {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: var(--dark-navy);
+      }
+
+      .inst-details p {
+        color: var(--slate-gray);
+        font-size: 0.85rem;
+        margin-top: 2px;
+      }
+
+      .media-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 1.5rem;
+      }
+
+      /* ==========================================================================
+           KARTU DAN WADAH SEMATAN (IFRAME) RESPONSIVE
+           ========================================================================== */
+      .card {
+        background: var(--white);
+        border-radius: 18px;
+        padding: 1.8rem;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-color);
+        transition: var(--transition);
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(244, 114, 182, 0.35);
+      }
+
+      .iframe-wrapper {
+        position: relative;
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        background-color: #f1f5f9;
+      }
+
+      /* Rasio Aspek Sematan */
+      .youtube-ratio {
+        aspect-ratio: 16/9;
+      }
+      .document-ratio {
+        aspect-ratio: 4/5;
+        max-height: 580px;
+      }
+      .map-ratio {
+        aspect-ratio: 16/9;
+      }
+
+      .iframe-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* ==========================================================================
+           PROFIL MAHASISWA & INTEGRASI BUDAYA
+           ========================================================================== */
+      .profile-grid {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .avatar-card {
+        text-align: center;
+        padding: 2.5rem 1.5rem;
+      }
+
+      .profile-avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid var(--soft-pink-bg);
+        box-shadow: var(--shadow-sm);
+        margin-bottom: 1.2rem;
+      }
+
+      .origin-badge {
+        background: linear-gradient(
+          135deg,
+          var(--primary-blue),
+          var(--accent-pink)
+        );
+        color: var(--white);
+        padding: 0.4rem 1rem;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-top: 0.8rem;
+      }
+
+      .biodata-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .biodata-table td {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 0.9rem;
+      }
+
+      .biodata-table td.label {
+        color: var(--slate-gray);
+        font-weight: 600;
+        width: 35%;
+      }
+
+      .timeline {
+        position: relative;
+        padding-left: 1.8rem;
+        border-left: 3px solid var(--primary-blue);
+        margin-top: 1.5rem;
+      }
+
+      .timeline-node {
+        position: relative;
+        margin-bottom: 1.5rem;
+      }
+
+      .timeline-node::before {
+        content: "";
+        position: absolute;
+        left: -33px;
+        top: 4px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--accent-pink);
+        border: 3px solid var(--white);
+        box-shadow: 0 0 0 3px var(--primary-blue);
+      }
+
+      .culture-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+        margin-top: 1.2rem;
+      }
+
+      .culture-card {
+        background: var(--soft-pink-bg);
+        border-radius: 14px;
+        padding: 1.2rem;
+        border: 1px solid rgba(244, 114, 182, 0.15);
+      }
+
+      .culture-media {
+        margin-top: 0.8rem;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 100%;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .culture-media img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        display: block;
+        transition: var(--transition);
+      }
+
+      .culture-media img:hover {
+        transform: scale(1.03);
+      }
+
+      .profile-quote-box {
+        grid-column: span 2;
+        background: linear-gradient(
+          135deg,
+          var(--white) 0%,
+          var(--soft-pink-bg) 100%
+        );
+        border-left: 5px solid #db2777;
+        padding: 2rem;
+        border-radius: 0 20px 20px 0;
+        margin-top: 2rem;
+        box-shadow: var(--shadow-md);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .profile-quote-box i.quote-bg-icon {
+        position: absolute;
+        right: 15px;
+        bottom: -10px;
+        font-size: 6rem;
+        color: rgba(244, 114, 182, 0.08);
+        pointer-events: none;
+      }
+
+      .profile-quote-box p {
+        font-size: 1.15rem;
+        line-height: 1.6;
+        color: var(--dark-navy);
+        font-weight: 500;
+        font-style: italic;
+        margin-bottom: 0.8rem;
+      }
+
+      .profile-quote-box cite {
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--primary-blue);
+        display: block;
+      }
+
+      /* ==========================================================================
+           GRID KHUSUS NAVIGASI HALAMAN INDUK ARTEFAK (OPTIMAL DESKTOP & MOBILE)
+           ========================================================================== */
+      .premium-artefak-grid {
+        display: grid !important;
+        grid-template-columns: repeat(
+          3,
+          1fr
+        ) !important; /* Paksa 3 kolom di laptop */
+        gap: 1.5rem !important;
+        margin: 2rem 0 3.5rem 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .premium-artefak-card {
+        background: #ffffff !important;
+        border: 1px solid rgba(15, 23, 42, 0.08) !important;
+        border-radius: 18px !important;
+        padding: 2.2rem 1.2rem !important;
+        text-align: center !important;
+        cursor: pointer !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: var(--shadow-sm) !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+        overflow: hidden !important;
+      }
+
+      .premium-artefak-card:hover {
+        transform: translateY(-6px) !important;
+        border-color: var(--accent-pink) !important;
+        box-shadow: var(--shadow-lg) !important;
+      }
+
+      .premium-artefak-card .premium-icon-box {
+        width: 58px !important;
+        height: 58px !important;
+        margin: 0 auto 1rem auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 50% !important;
+        background-color: var(--light-blue) !important;
+        color: var(--primary-blue) !important;
+        font-size: 1.4rem !important;
+        flex-shrink: 0 !important;
+        transition: all 0.4s ease !important;
+      }
+
+      .premium-artefak-card:hover .premium-icon-box {
+        background-color: var(--soft-pink-bg) !important;
+        color: var(--accent-pink) !important;
+        transform: rotate(360deg) !important;
+      }
+
+      .premium-artefak-card h4 {
+        font-size: 1.1rem !important;
+        font-weight: 700 !important;
+        color: var(--dark-navy) !important;
+        margin: 0 0 0.4rem 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
+      }
+
+      .premium-artefak-card p {
+        font-size: 0.8rem !important;
+        color: var(--slate-gray) !important;
+        line-height: 1.4 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
+      }
+
+      /* ==========================================================================
+           ARTEFAK PRODUK SIKLUS PPL
+           ========================================================================== */
+      .siklus-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .analysis-theory-box {
+        background: var(--light-blue);
+        border: 1.5px solid rgba(29, 78, 216, 0.15);
+        border-radius: 20px;
+        padding: 2rem;
+      }
+
+      .artefacts-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .two-column-span {
+        grid-column: span 2;
+      }
+
+      .analysis-tag {
+        background: var(--primary-blue);
+        color: var(--white);
+        padding: 0.3rem 0.8rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        display: inline-block;
+        margin-bottom: 0.8rem;
+      }
+
+      /* ==========================================================================
+           TATA LETAK UTILITAS, TOMBOL, DAN FOOTER
+           ========================================================================== */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0.8rem 1.8rem;
+        border-radius: 12px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: var(--transition);
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-gradient {
+        background: linear-gradient(
+          135deg,
+          var(--primary-blue),
+          var(--primary-blue)
+        );
+        color: var(--white);
+        box-shadow: 0 8px 16px -4px rgba(29, 78, 216, 0.25);
+      }
+
+      .btn-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px -4px rgba(29, 78, 216, 0.35);
+        background: linear-gradient(
+          135deg,
+          var(--primary-blue),
+          var(--accent-pink)
+        );
+      }
+
+      .section-title-wrapper {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title-wrapper h2,
+      .section-title-wrapper h3 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        letter-spacing: -1px;
+        color: var(--dark-navy);
+        margin-bottom: 0.5rem;
+      }
+
+      .section-title-wrapper p {
+        color: var(--slate-gray);
+        font-size: 1rem;
+      }
+
+      .horizontal-timeline {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 2rem;
+        position: relative;
+      }
+
+      .horizontal-timeline::before {
+        content: "";
+        position: absolute;
+        top: 35px;
+        left: 10%;
+        width: 80%;
+        height: 3px;
+        background: var(--border-color);
+        z-index: -1;
+      }
+
+      .ht-node {
+        text-align: center;
+        background: var(--white);
+        padding: 1.8rem;
+        border-radius: 18px;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--border-color);
+      }
+
+      .ht-badge {
+        width: 44px;
+        height: 44px;
+        background: var(--primary-blue);
+        color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 1.1rem;
+        margin: 0 auto 1.2rem auto;
+        border: 3px solid var(--white);
+        box-shadow: 0 0 0 3px var(--accent-pink);
+      }
+
+      .tutorial-banner {
+        background: linear-gradient(135deg, var(--dark-navy) 0%, #1e293b 100%);
+        color: var(--white);
+        border-radius: 20px;
+        padding: 2.2rem;
+        margin-top: 4rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .tutorial-banner h4 {
+        color: var(--accent-pink);
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .tutorial-banner ol {
+        padding-left: 1.2rem;
+      }
+
+      .tutorial-banner li {
+        margin-bottom: 0.8rem;
+        line-height: 1.6;
+        font-size: 0.9rem;
+      }
+
+      .tutorial-banner code {
+        background: rgba(244, 114, 182, 0.18);
+        padding: 0.15rem 0.4rem;
+        border-radius: 4px;
+        font-family: monospace;
+        color: var(--accent-pink);
+        font-size: 0.85rem;
+      }
+
+      .footer {
+        background: var(--white);
+        border-top: 1px solid var(--border-color);
+        padding: 2.5rem 0;
+        text-align: center;
+        margin-top: 6rem;
+      }
+
+      .footer p {
+        color: var(--slate-gray);
+        font-size: 0.9rem;
+      }
+
+      /* ==========================================================================
+           1. TAMBAHKAN CSS KHUSUS REFLEKSI INI (Letakkan sebelum media queries)
+           ========================================================================== */
+      .refleksi-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .refleksi-card {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--border-color);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+      }
+
+      .refleksi-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(244, 114, 182, 0.25);
+      }
+
+      .refleksi-title {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--dark-navy);
+        line-height: 1.5;
+        margin-top: 0.8rem;
+        margin-bottom: 1rem;
+      }
+
+      .refleksi-text {
+        color: var(--slate-gray);
+        font-size: 0.88rem;
+        line-height: 1.7;
+        text-align: justify;
+      }
+
+      .premium-box {
+        border-radius: 12px;
+        padding: 1.2rem;
+        font-size: 0.88rem;
+        line-height: 1.6;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+
+      .premium-box i {
+        margin-top: 3px;
+        font-size: 1.15rem;
+      }
+
+      .premium-success {
+        background-color: #f0fdf4;
+        border-left: 4px solid #22c55e;
+        color: #166534;
+      }
+
+      .premium-danger {
+        background-color: #fef2f2;
+        border-left: 4px solid #ef4444;
+        color: #991b1b;
+      }
+
+      .premium-info {
+        background-color: #f0f9ff;
+        border-left: 4px solid #0ea5e9;
+        color: #075985;
+      }
+
+      /* ==========================================================================
+           CSS KHUSUS FILOSOFI MENGAJAR (AESTHETIC & INTERACTIVE)
+           ========================================================================== */
+      .filosofi-hero-card {
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          var(--soft-pink-bg) 100%
+        );
+        border: 1px solid rgba(244, 114, 182, 0.2);
+        border-radius: 24px;
+        padding: 2.5rem;
+        box-shadow: var(--shadow-md);
+        margin-bottom: 2.5rem;
+      }
+
+      .filosofi-grid-two {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .filosofi-quote-accent {
+        border-left: 4px solid var(--accent-pink);
+        padding-left: 1.5rem;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--primary-blue);
+        line-height: 1.5;
+        font-style: italic;
+      }
+
+      .filosofi-feature-card {
+        background: var(--white);
+        border: 1px solid var(--border-color);
+        border-radius: 18px;
+        padding: 1.5rem;
+        transition: var(--transition);
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      .filosofi-feature-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--primary-blue);
+        box-shadow: var(--shadow-md);
+      }
+
+      .filosofi-feature-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background-color: var(--light-blue);
+        color: var(--primary-blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+      }
+
+      .filosofi-pilar-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .filosofi-pilar-item {
+        background: var(--white);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 1.25rem;
+        text-align: center;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .filosofi-pilar-item i {
+        font-size: 1.5rem;
+        color: var(--accent-pink);
+        margin-bottom: 0.5rem;
+      }
+
+      .filosofi-pilar-item h5 {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--dark-navy);
+      }
+
+      .filosofi-step-badge {
+        background-color: var(--primary-blue);
+        color: var(--white);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.9rem;
+        margin-right: 0.5rem;
+      }
+
+      /* ==========================================================================
+           CSS KHUSUS KUNJUNGAN DPL
+           ========================================================================== */
+      .dpl-layout-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .dpl-top-card {
+        background: linear-gradient(135deg, #ffffff, #f8fafc);
+        border-left: 5px solid var(--primary-blue);
+      }
+
+      .dpl-content-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .dpl-gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+        margin-top: 1.25rem;
+      }
+
+      .dpl-gallery-item {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow:
+          0 4px 6px -1px rgba(0, 0, 0, 0.05),
+          0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
+      }
+
+      .dpl-gallery-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+
+      .dpl-img-wrapper {
+        width: 100%;
+        height: 160px;
+        overflow: hidden;
+        background-color: #f1f5f9;
+      }
+
+      .dpl-img-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .dpl-gallery-item:hover .dpl-img-wrapper img {
+        transform: scale(1.06);
+      }
+
+      .dpl-caption {
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+        color: var(--slate-gray);
+        font-weight: 500;
+        line-height: 1.4;
+        border-top: 1px solid #f1f5f9;
+        background: #ffffff;
+      }
+
+      .dpl-badge-counter {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(37, 99, 235, 0.1);
+        color: var(--primary-blue);
+        padding: 0.5rem 1rem;
+        border-radius: 30px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      /* Definisikan grid-2 global di CSS utama (sebelum @media) */
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      /* ==========================================================================
+           RESPONSIVITAS MEDIA QUERIES (FLUID, RAPI & NYAMAN DI SEMUA LAYAR)
+           ========================================================================== */
+      @media (max-width: 1024px) {
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+          text-align: center;
+        }
+
+        .tagline-box {
+          border-left: none;
+          border-top: 3px solid var(--accent-pink);
+          padding-top: 1rem;
+          padding-left: 0;
+        }
+
+        .hero-image-wrapper {
+          order: -1;
+        }
+
+        .media-grid,
+        .profile-grid,
+        .artefacts-columns,
+        .horizontal-timeline,
+        .culture-grid,
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+
+        .two-column-span {
+          grid-column: span 1;
+        }
+
+        .horizontal-timeline::before {
+          display: none;
+        }
+
+        .premium-artefak-grid {
+          grid-template-columns: repeat(
+            2,
+            1fr
+          ) !important; /* 2 Kolom di Tablet */
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          width: 95%;
+          top: 10px;
+        }
+
+        .hamburger {
+          display: block;
+        }
+
+        .nav-menu {
+          position: fixed;
+          left: -110%;
+          top: 75px;
+          flex-direction: column;
+          background: var(--white);
+          width: 100%;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          border-radius: 16px;
+          padding: 1.5rem;
+          transition: var(--transition);
+          gap: 0.8rem;
+          max-height: calc(100vh - 90px);
+          overflow-y: auto;
+        }
+
+        .nav-menu.active {
+          left: 0;
+        }
+
+        .dropdown-menu-list {
+          position: relative;
+          box-shadow: none;
+          border: none;
+          width: 100%;
+          top: 0;
+          transform: none !important;
+          display: none;
+          padding-left: 1rem;
+        }
+
+        .dropdown.active .dropdown-menu-list {
+          display: block;
+          opacity: 1;
+        }
+
+        .hero-text h1 {
+          font-size: 2.4rem;
+        }
+
+        .section-title-wrapper h2,
+        .section-title-wrapper h3 {
+          font-size: 1.8rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .premium-artefak-grid {
+          grid-template-columns: 1fr !important; /* 1 Kolom di HP */
+        }
+
+        .profile-quote-box {
+          grid-column: span 1;
+        }
+
+        .main-content {
+          margin-top: 100px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ANIMATED BLOBS BACKGROUND -->
+    <div class="blob-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="#beranda" class="nav-logo" onclick="switchPage('beranda')"
+          >Putri<span>Fadhilah</span>Roslin,<span>S.Kom.</span></a
+        >
+
+        <ul class="nav-menu" id="navMenu">
+          <li>
+            <a
+              href="#beranda"
+              class="nav-link active"
+              onclick="switchPage('beranda')"
+              ><i class="fas fa-home"></i> Beranda</a
+            >
+          </li>
+          <li>
+            <a href="#profil" class="nav-link" onclick="switchPage('profil')"
+              ><i class="fas fa-user"></i> Profil</a
+            >
+          </li>
+
+          <!-- Dropdown Artefak -->
+          <li class="dropdown" id="dropdownContainer">
+            <a
+              href="#artefak-induk"
+              class="nav-link"
+              id="dropdownToggle"
+              onclick="
+                switchPage('artefak-induk');
+                event.stopPropagation();
+              "
+              ><i class="fas fa-folder-open"></i> Artefak Produk
+              <i class="fas fa-chevron-down" style="font-size: 0.7rem"></i
+            ></a>
+            <ul class="dropdown-menu-list">
+              <li>
+                <a href="#siklus1" onclick="switchPage('siklus1')">Siklus 1</a>
+              </li>
+              <li>
+                <a href="#siklus2" onclick="switchPage('siklus2')">Siklus 2</a>
+              </li>
+              <li>
+                <a href="#siklus3" onclick="switchPage('siklus3')">Siklus 3</a>
+              </li>
+              <li>
+                <a href="#profiling" onclick="switchPage('profiling')"
+                  >Profiling Murid</a
+                >
+              </li>
+              <li>
+                <a href="#logbook" onclick="switchPage('logbook')">Logbook</a>
+              </li>
+
+              <li>
+                <a href="#kunjungan-dpl" onclick="switchPage('kunjungan-dpl')"
+                  >Kunjungan DPL</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#analisis-artefak"
+                  onclick="switchPage('analisis-artefak')"
+                  >Analisis Artefak Produk</a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a
+              href="#model-guru"
+              class="nav-link"
+              onclick="switchPage('model-guru')"
+              ><i class="fas fa-bullseye"></i> Model Guru</a
+            >
+          </li>
+          <!-- Tambahan Menu Baru -->
+          <li>
+            <a
+              href="#refleksi-pplt"
+              class="nav-link"
+              onclick="switchPage('refleksi-pplt')"
+              ><i class="fas fa-sync-alt"></i> Refleksi Akhir PPLT</a
+            >
+          </li>
+          <li>
+            <a
+              href="#filosofi-mengajar"
+              class="nav-link"
+              onclick="switchPage('filosofi-mengajar')"
+              ><i class="fas fa-heart"></i> Filosofi Mengajar</a
+            >
+          </li>
+        </ul>
+
+        <div class="hamburger" id="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MAIN IMMERSIVE CONTENT CONTAINER -->
+    <main class="main-content">
+      <!-- ==========================================
+             1. BERANDA (HOME)
+             ========================================== -->
+      <section id="beranda" class="page-section active">
+        <div class="hero">
+          <div class="hero-text">
+            <h2>
+              Mahasiswa PPG Prajabatan
+              <span style="color: var(--accent-pink)">•</span> Bidang Studi
+              Informatika
+            </h2>
+            <h1>
+              Putri Fadhilah Roslin, <span class="text-gradient">S.Kom.</span>
+            </h1>
+
+            <div class="tagline-box">
+              "Teknologi dapat menghubungkan manusia, tetapi pendidikanlah yang
+              mengajarkan bagaimana menggunakannya dengan bijaksana."
+            </div>
+
+            <p class="desc">
+              Selamat datang di E-Portfolio Praktik Pengalaman Lapangan (PPL)
+              Terbimbing saya. Website ini mendokumentasikan perjalanan saya
+              sebagai calon guru Informatika selama melaksanakan praktik
+              mengajar di SMPN 25 Padang. Melalui berbagai pengalaman pengalaman
+              pembelajaran, penyusunan perangkat ajar, implementasi
+              pembelajaran, refleksi, dan evaluasi, saya belajar untuk menjadi
+              guru yang tidak hanya menguasai materi, tetapi juga mampu
+              menciptakan pembelajaran yang bermakna, menyenangkan, dan berpusat
+              pada murid.
+            </p>
+
+            <button class="btn btn-gradient" onclick="switchPage('profil')">
+              Ayo Kenal Lebih Dalam <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+          <div class="hero-image-wrapper">
+            <div class="profile-glow"></div>
+            <img
+              src="assets/_10A6595.JPG"
+              alt="Putri Fadhilah Roslin Portrait"
+              class="fullbody-image"
+            />
+          </div>
+        </div>
+
+        <!-- INSTITUTION & SCHOOL OF PPL SECTIONS -->
+        <div class="campus-school-section">
+          <div class="section-title-wrapper">
+            <h2>LPTK Penyelenggara & Sekolah Mitra PPL</h2>
+            <p>
+              Instansi akademis tempat saya menimbang ilmu selama program PPG
+              Prajabatan.
+            </p>
+          </div>
+
+          <div class="institution-container">
+            <!-- LPTK Section -->
+            <div class="institution-card">
+              <div class="inst-grid">
+                <div class="inst-info-side">
+                  <div class="inst-header">
+                    <div class="inst-icon">
+                      <i class="fas fa-university"></i>
+                    </div>
+                    <div class="inst-details">
+                      <h3>Universitas Negeri Padang (LPTK)</h3>
+                      <p>
+                        <i class="fas fa-map-marker-alt"></i> Kampus Utama UNP,
+                        Air Tawar, Kota Padang, Sumatera Barat
+                      </p>
+                    </div>
+                  </div>
+                  <p class="inst-desc">
+                    Universitas Negeri Padang (UNP) merupakan salah satu LPTK
+                    unggulan nasional yang menjadi kawah candradimuka saya dalam
+                    memperdalam kompetensi pedagogic, profesional, sosial, dan
+                    kepribadian pada bidang studi Informatika. Di sinilah
+                    teori-teori pendidikan modern dikoordinasikan secara
+                    sistematis demi melahirkan guru masa depan yang literat
+                    teknologi.
+                  </p>
+                </div>
+                <div class="inst-media-side">
+                  <div
+                    class="card"
+                    style="
+                      margin: 1rem;
+                      padding: 1rem;
+                      border-color: rgba(29, 78, 216, 0.15);
+                    "
+                  >
+                    <h4
+                      style="
+                        margin-bottom: 0.8rem;
+                        font-size: 1rem;
+                        font-weight: 700;
+                        color: var(--dark-navy);
+                      "
+                    >
+                      <i class="fab fa-youtube text-danger"></i> Video Profil
+                      Kampus
+                    </h4>
+                    <div class="iframe-wrapper youtube-ratio">
+                      <iframe
+                        src="https://www.youtube.com/embed/HOHV8PCx7u0"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+                    <div
+                      style="
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 0.5rem;
+                        margin-top: 1rem;
+                      "
+                    >
+                      <img
+                        src="assets/unp-1.jpeg"
+                        alt="Dokumentasi LPTK UNP 1"
+                        onerror="
+                          this.src =
+                            'https://placehold.co/600x400/eff6ff/1d4ed8?text=Dokumentasi+UNP+1'
+                        "
+                        style="
+                          width: 100%;
+                          aspect-ratio: 16/9;
+                          object-fit: cover;
+                          border-radius: 8px;
+                          border: 1px solid var(--border-color);
+                          transition: var(--transition);
+                        "
+                        onmouseover="this.style.transform = 'scale(1.05)'"
+                        onmouseout="this.style.transform = 'scale(1)'"
+                      />
+                      <img
+                        src="assets/unp-2.jpeg"
+                        alt="Dokumentasi LPTK UNP 2"
+                        onerror="
+                          this.src =
+                            'https://placehold.co/600x400/eff6ff/1d4ed8?text=Dokumentasi+UNP+2'
+                        "
+                        style="
+                          width: 100%;
+                          aspect-ratio: 16/9;
+                          object-fit: cover;
+                          border-radius: 8px;
+                          border: 1px solid var(--border-color);
+                          transition: var(--transition);
+                        "
+                        onmouseover="this.style.transform = 'scale(1.05)'"
+                        onmouseout="this.style.transform = 'scale(1)'"
+                      />
+                      <img
+                        src="assets/unp-3.jpeg"
+                        alt="Dokumentasi LPTK UNP 3"
+                        onerror="
+                          this.src =
+                            'https://placehold.co/600x400/eff6ff/1d4ed8?text=Dokumentasi+UNP+3'
+                        "
+                        style="
+                          width: 100%;
+                          aspect-ratio: 16/9;
+                          object-fit: cover;
+                          border-radius: 8px;
+                          border: 1px solid var(--border-color);
+                          transition: var(--transition);
+                        "
+                        onmouseover="this.style.transform = 'scale(1.05)'"
+                        onmouseout="this.style.transform = 'scale(1)'"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sekolah PPL Section -->
+            <div class="institution-card">
+              <div class="inst-grid">
+                <div class="inst-info-side">
+                  <div class="inst-header">
+                    <div class="inst-icon"><i class="fas fa-school"></i></div>
+                    <div class="inst-details">
+                      <h3>SMP Negeri 25 Padang (Sekolah Mitra PPL)</h3>
+                      <p>
+                        <i class="fas fa-map-marker-alt"></i> Jl. Gajah Mada No.
+                        3, Gn. Pangilun, Kec. Padang Utara, Kota Padang,
+                        Sumatera Barat
+                      </p>
+                    </div>
+                  </div>
+                  <p class="inst-desc">
+                    SMP Negeri 25 Padang adalah sekolah mitra tempat saya
+                    mengaplikasikan teori pembelajaran secara riil melalui
+                    program PPL Terbimbing. Di lingkungan belajar yang aktif
+                    ini, saya berkesempatan merancang modul ajar berdiferensiasi
+                    Informatika, menyusun strategi interaktif berbasis kelas,
+                    serta mendampingi tumbuh kembang potensi siswa.
+                  </p>
+                </div>
+                <div class="inst-media-side">
+                  <div
+                    class="card"
+                    style="
+                      margin: 1rem;
+                      padding: 1rem;
+                      border-color: rgba(244, 114, 182, 0.15);
+                    "
+                  >
+                    <h4
+                      style="
+                        margin-bottom: 0.8rem;
+                        font-size: 1rem;
+                        font-weight: 700;
+                        color: var(--dark-navy);
+                      "
+                    >
+                      <i class="fab fa-youtube text-danger"></i> Video Profil
+                      Sekolah
+                    </h4>
+                    <div class="iframe-wrapper youtube-ratio">
+                      <iframe
+                        src="https://www.youtube.com/embed/xsZ5VYZ6sCk?si=EXgveBlW_oiyUbbi"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="
+                          accelerometer;
+                          autoplay;
+                          clipboard-write;
+                          encrypted-media;
+                          gyroscope;
+                          picture-in-picture;
+                          web-share;
+                        "
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+                    <div
+                      style="
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 0.5rem;
+                        margin-top: 1rem;
+                      "
+                    >
+                      <img
+                        src="assets/dpl-1.jpeg"
+                        alt="Dokumentasi SMPN 25 Padang 1"
+                        onerror="
+                          this.src =
+                            'https://placehold.co/600x400/fdf2f8/f472b6?text=SMPN+25+1'
+                        "
+                        style="
+                          width: 100%;
+                          aspect-ratio: 16/9;
+                          object-fit: cover;
+                          border-radius: 8px;
+                          border: 1px solid var(--border-color);
+                          transition: var(--transition);
+                        "
+                        onmouseover="this.style.transform = 'scale(1.05)'"
+                        onmouseout="this.style.transform = 'scale(1)'"
+                      />
+                      <img
+                        src="assets/mhs-ppl.jpg"
+                        alt="Dokumentasi SMPN 25 Padang 2"
+                        onerror="
+                          this.src =
+                            'https://placehold.co/600x400/fdf2f8/f472b6?text=SMPN+25+2'
+                        "
+                        style="
+                          width: 100%;
+                          aspect-ratio: 16/9;
+                          object-fit: cover;
+                          border-radius: 8px;
+                          border: 1px solid var(--border-color);
+                          transition: var(--transition);
+                        "
+                        onmouseover="this.style.transform = 'scale(1.05)'"
+                        onmouseout="this.style.transform = 'scale(1)'"
+                      />
+                      <img
+                        src="assets/berlima-2.jpeg"
+                        alt="Dokumentasi SMPN 25 Padang 3"
+                        onerror="
+                          this.src =
+                            'https://placehold.co/600x400/fdf2f8/f472b6?text=SMPN+25+3'
+                        "
+                        style="
+                          width: 100%;
+                          aspect-ratio: 16/9;
+                          object-fit: cover;
+                          border-radius: 8px;
+                          border: 1px solid var(--border-color);
+                          transition: var(--transition);
+                        "
+                        onmouseover="this.style.transform = 'scale(1.05)'"
+                        onmouseout="this.style.transform = 'scale(1)'"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             2. PROFIL MAHASISWA
+             ========================================== -->
+      <section id="profil" class="page-section">
+        <div class="section-title-wrapper">
+          <h2>Profil & Latar Belakang</h2>
+          <p>
+            Mengenal lebih dekat latar belakang, inspirasi menjadi guru, dan
+            asal daerah saya.
+          </p>
+        </div>
+
+        <div class="profile-grid">
+          <!-- KUTIPAN PENGUAT PROFIL MAHASISWA (Card 5) -->
+          <div class="profile-quote-box">
+            <i class="fas fa-quote-right quote-bg-icon"></i>
+            <p>
+              "Tidak ada gunanya IQ Anda tinggi namun malas dan tidak memiliki
+              disiplin. Yang terpenting adalah Anda konsisten, bekerja keras,
+              serta mampu menyelaraskan iman, takwa, dan ilmu teknologi untuk
+              berkontribusi bagi masa depan bangsa yang cerah."
+            </p>
+            <cite>— Prof. Dr. Ing. H. Bacharuddin Jusuf Habibie, FREng.</cite>
+          </div>
+
+          <!-- KOLOM KIRI (Profil Singkat, Inspirasi, & Tujuan) -->
+          <div class="profile-left">
+            <div class="card avatar-card">
+              <img
+                src="assets/AAK_5922 edit.jpg"
+                alt="Putri Fadhilah Roslin"
+                class="profile-avatar"
+              />
+              <h3>Putri Fadhilah Roslin, S.Kom.</h3>
+              <p class="text-gradient" style="font-weight: 700">
+                Calon Guru Profesional
+              </p>
+              <span class="origin-badge"
+                ><i class="fas fa-map-marker-alt"></i> Batusangkar, Sumbar</span
+              >
+            </div>
+
+            <!-- Card 3: Inspirasi Menjadi Guru -->
+            <div class="card" style="margin-top: 2rem">
+              <h3>
+                <i class="fas fa-lightbulb text-primary"></i> Inspirasi Menjadi
+                Guru
+              </h3>
+              <p
+                style="
+                  color: var(--slate-gray);
+                  margin-top: 1rem;
+                  line-height: 1.7;
+                  text-align: justify;
+                "
+              >
+                Ketertarikan saya menjadi guru berawal dari keyakinan bahwa
+                pendidikan merupakan sarana terbaik untuk membantu seseorang
+                berkembang dan mencapai potensinya. Sebagai lulusan bidang
+                Informatika, saya melihat bahwa perkembangan teknologi yang
+                sangat cepat perlu diimbangi dengan pendidikan yang mampu
+                membentuk karakter digital murid. Saya ingin menjadi bagian dari
+                proses tersebut dengan membantu murid tidak hanya memahami
+                teknologi, tetapi juga menggunakannya secara bijaksana dan
+                bertanggung jawab.
+              </p>
+            </div>
+
+            <!-- Card 4: Tujuan Menjadi Guru Profesional -->
+            <div class="card" style="margin-top: 2rem">
+              <h3>
+                <i class="fas fa-bullseye text-primary"></i> Tujuan Menjadi Guru
+                Profesional
+              </h3>
+              <p
+                style="
+                  color: var(--slate-gray);
+                  margin-top: 1rem;
+                  line-height: 1.7;
+                  text-align: justify;
+                "
+              >
+                Saya bercita-cita menjadi guru Informatika yang profesional,
+                inovatif, dan reflektif. Saya ingin menciptakan pembelajaran
+                yang relevan dengan kehidupan murid, memanfaatkan teknologi
+                secara optimal, serta membimbing murid menjadi individu yang
+                kritis, kreatif, berkarakter, dan mampu menghadapi tantangan era
+                digital.
+              </p>
+            </div>
+          </div>
+
+          <!-- KOLOM KANAN (Tentang Saya, Biodata, Keunikan Daerah, & Riwayat Pendidikan) -->
+          <div class="profile-right">
+            <!-- Card 1: Tentang Saya -->
+            <div class="card">
+              <h3><i class="fas fa-user text-primary"></i> Tentang Saya</h3>
+              <p
+                style="
+                  margin-top: 1rem;
+                  line-height: 1.8;
+                  text-align: justify;
+                  color: var(--dark-navy);
+                "
+              >
+                Nama saya <strong>Putri Fadhilah Roslin</strong>, mahasiswa
+                Pendidikan Profesi Guru (PPG) Prajabatan Bidang Studi
+                Informatika. Saya merupakan sarjana Universitas Jambi dengan
+                program studi Sistem Informasi. Saya berasal dari Batusangkar,
+                Kabupaten Tanah Datar, Sumatera Barat, daerah yang dikenal
+                dengan budaya Minangkabau yang menjunjung tinggi nilai
+                pendidikan, musyawarah, dan pembelajaran sepanjang hayat.
+              </p>
+            </div>
+
+            <div class="card" style="margin-top: 2rem">
+              <h3>
+                <i class="fas fa-id-card text-primary"></i> Biodata Lengkap
+              </h3>
+              <table class="biodata-table" style="margin-top: 0.5rem">
+                <tr>
+                  <td class="label">NIM</td>
+                  <td>25427714</td>
+                </tr>
+                <tr>
+                  <td class="label">Jurusan / Rombel</td>
+                  <td>Informatika / Rombel 2 - 2026</td>
+                </tr>
+                <tr>
+                  <td class="label">Surel Resmi</td>
+                  <td>putriroslinn@gmail.com</td>
+                </tr>
+              </table>
+            </div>
+
+            <!-- Card 2: Keunikan Daerah Asal -->
+            <div class="card" style="margin-top: 2rem">
+              <h3>
+                <i class="fas fa-landmark text-primary"></i> Keunikan Daerah
+                Asal
+              </h3>
+              <p
+                style="margin-top: 1rem; line-height: 1.8; text-align: justify"
+              >
+                Saya berasal dari <strong>Sumatera Barat</strong>, provinsi yang
+                kaya akan budaya, kuliner, dan destinasi wisata yang menjadi
+                identitas masyarakat Minangkabau.
+              </p>
+
+              <div class="culture-grid">
+                <!-- Dakak-Dakak -->
+                <div class="culture-card">
+                  <h5>
+                    <i class="fas fa-utensils text-accent"></i> Kuliner:
+                    Dakak-Dakak
+                  </h5>
+                  <p
+                    style="
+                      margin-bottom: 0.8rem;
+                      font-size: 0.85rem;
+                      text-align: justify;
+                    "
+                  >
+                    Salah satu kuliner khas yang berasal dari daerah saya adalah
+                    Dakak-Dakak, camilan tradisional dari Simabur, Pariangan,
+                    Kabupaten Tanah Datar. Dakak-Dakak memiliki tekstur renyah,
+                    cita rasa gurih yang khas, serta proses pembuatan yang unik
+                    karena menggunakan alat tradisional dari batok kelapa yang
+                    menghasilkan bunyi "dakak-dakak" saat digunakan. Keunikan
+                    tersebut menjadikan Dakak-Dakak bukan hanya sekadar makanan
+                    ringan, tetapi juga bagian dari warisan budaya Minangkabau
+                    yang masih lestari hingga saat ini.
+                  </p>
+                  <div class="culture-media">
+                    <img
+                      src="assets/dakak-dakak.jpg"
+                      alt="Ilustrasi Dakak-Dakak"
+                    />
+                  </div>
+                  <div
+                    class="iframe-wrapper youtube-ratio"
+                    style="margin-top: 0.8rem"
+                  >
+                    <iframe
+                      width="560"
+                      height="315"
+                      src="https://www.youtube.com/embed/6VIpPriCXoQ?si=xsmrq7cz3rfrAtuM"
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="
+                        accelerometer;
+                        autoplay;
+                        clipboard-write;
+                        encrypted-media;
+                        gyroscope;
+                        picture-in-picture;
+                        web-share;
+                      "
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                </div>
+
+                <!-- Istano Basa Pagaruyung -->
+                <div class="culture-card">
+                  <h5>
+                    <i class="fas fa-home text-accent"></i> Istano Basa
+                    Pagaruyung
+                  </h5>
+                  <p
+                    style="
+                      margin-bottom: 0.8rem;
+                      font-size: 0.85rem;
+                      text-align: justify;
+                    "
+                  >
+                    Sumatera Barat juga memiliki berbagai destinasi wisata
+                    budaya yang terkenal, salah satunya adalah Istano Basa
+                    Pagaruyung yang berada di Pagaruyung, Kabupaten Tanah Datar.
+                    Bangunan megah ini memiliki tiga lantai, puluhan tiang
+                    penyangga, serta gonjong khas Rumah Gadang yang menjadi
+                    simbol kebudayaan Minangkabau. Di dalamnya terdapat berbagai
+                    replika furnitur dan artefak tradisional yang memperkenalkan
+                    sejarah serta nilai-nilai budaya masyarakat Minangkabau.
+                    Keberadaan Istano Basa Pagaruyung tidak hanya menjadi objek
+                    wisata, tetapi juga menjadi sarana pelestarian budaya yang
+                    memperkuat identitas masyarakat Sumatera Barat.
+                  </p>
+                  <div class="culture-media">
+                    <img
+                      src="assets/istana-pagaruyung.jpeg"
+                      alt="Istano Basa Pagaruyung"
+                    />
+                  </div>
+                  <div
+                    class="iframe-wrapper youtube-ratio"
+                    style="margin-top: 0.8rem"
+                  >
+                    <iframe
+                      width="560"
+                      height="315"
+                      src="https://www.youtube.com/embed/EhSLvogQHc4?si=LP9MuTZClXtVxeR2"
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="
+                        accelerometer;
+                        autoplay;
+                        clipboard-write;
+                        encrypted-media;
+                        gyroscope;
+                        picture-in-picture;
+                        web-share;
+                      "
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             NEW PAGE SECTION: HALAMAN INDUK ARTEFAK PRODUK
+             ========================================== -->
+      <section id="artefak-induk" class="page-section">
+        <!-- 1. Pengantar Artefak -->
+        <div class="section-title-wrapper">
+          <h2>Artefak Produk Pembelajaran</h2>
+          <p>
+            Kumpulan dokumentasi, perangkat ajar, instrumen evaluasi, dan rekam
+            jejak pemenuhan kompetensi klinis selama masa PPL Terbimbing.
+          </p>
+        </div>
+
+        <div class="card" style="margin-bottom: 2rem; padding: 2rem">
+          <p
+            style="
+              color: var(--dark-navy);
+              line-height: 1.8;
+              text-align: justify;
+              margin: 0;
+            "
+          >
+            Selama pelaksanaan PPL Terbimbing di SMPN 25 Padang, saya
+            mengembangkan dan mengimplementasikan perangkat pembelajaran
+            Informatika kelas VIII pada elemen Literasi Digital melalui tiga
+            siklus pembelajaran yang saling berkesinambungan. Setiap siklus
+            dirancang berdasarkan hasil refleksi dan evaluasi pada pembelajaran
+            sebelumnya sehingga terjadi proses perbaikan berkelanjutan dalam
+            perencanaan maupun pelaksanaan pembelajaran. Artefak yang
+            ditampilkan pada setiap siklus meliputi Rencana Pembelajaran
+            Mendalam (RPM), media pembelajaran, hasil kerja murid, penilaian
+            Guru Pamong dan Dosen Pembimbing Lapangan, dokumentasi kegiatan,
+            serta video praktik mengajar. Keseluruhan artefak tersebut menjadi
+            bukti proses belajar saya sebagai calon guru profesional sekaligus
+            menunjukkan perkembangan kompetensi pedagogik selama pelaksanaan PPL
+            Terbimbing.
+          </p>
+        </div>
+
+        <!-- 2. Tombol Navigasi Menuju Subnav -->
+        <h3 style="margin-bottom: 1.5rem; color: var(--dark-navy)">
+          <i class="fas fa-th-large text-primary"></i> Akses Cepat Sub-Artefak
+        </h3>
+
+        <div class="premium-artefak-grid">
+          <!-- Card Siklus 1 -->
+          <div class="premium-artefak-card" onclick="switchPage('siklus1')">
+            <div class="premium-icon-box">
+              <i class="fas fa-circle-notch"></i>
+            </div>
+            <h4>Siklus 1</h4>
+            <p>
+              Analisis, RPM, Media, Hasil Kerja Murid, Penilaian Guru Pamong,
+              Dokumentasi video dan foto praktik mengajar
+            </p>
+          </div>
+
+          <!-- Card Siklus 2 -->
+          <div class="premium-artefak-card" onclick="switchPage('siklus2')">
+            <div class="premium-icon-box"><i class="fas fa-history"></i></div>
+            <h4>Siklus 2</h4>
+            <p>
+              Analisis, RPM, Media, Hasil Kerja Murid, Penilaian Guru Pamong,
+              Dokumentasi video dan foto praktik mengajar
+            </p>
+          </div>
+
+          <!-- Card Siklus 3 -->
+          <div class="premium-artefak-card" onclick="switchPage('siklus3')">
+            <div class="premium-icon-box">
+              <i class="fas fa-check-double"></i>
+            </div>
+            <h4>Siklus 3</h4>
+            <p>
+              Analisis, RPM, Media, Hasil Kerja Murid, Penilaian Guru Pamong,
+              Dokumentasi video dan foto praktik mengajar
+            </p>
+          </div>
+
+          <!-- Card Profiling Murid -->
+          <div class="premium-artefak-card" onclick="switchPage('profiling')">
+            <div
+              class="premium-icon-box"
+              style="background: #fef2f2; color: #ef4444"
+            >
+              <i class="fas fa-user-graduate"></i>
+            </div>
+            <h4>Profiling Murid</h4>
+            <p>Laporan Hasil Asesmen Awal Murid</p>
+          </div>
+
+          <!-- Card Logbook -->
+          <div class="premium-artefak-card" onclick="switchPage('logbook')">
+            <div
+              class="premium-icon-box"
+              style="background: #fef2f2; color: #ef4444"
+            >
+              <i class="fas fa-book"></i>
+            </div>
+            <h4>Logbook</h4>
+            <p>
+              Catatan Aktivitas Harian Bersama Guru Pamong dan Bimbingan Bersama
+              DPL
+            </p>
+          </div>
+
+          <!-- Card Penilaian DPL -->
+          <div
+            class="premium-artefak-card"
+            onclick="switchPage('kunjungan-dpl')"
+          >
+            <div
+              class="premium-icon-box"
+              style="background: #fef2f2; color: #ef4444"
+            >
+              <i class="fas fa-star"></i>
+            </div>
+            <h4>Kunjungan DPL</h4>
+            <p>Kunjungan DPL dan Penilaian</p>
+          </div>
+        </div>
+
+        <!-- 3. Judul Analisis Artefak Produk -->
+        <div
+          id="analisis-artefak-judul"
+          class="section-title-wrapper"
+          style="
+            border-top: 1px solid var(--border-color);
+            padding-top: 4rem;
+            margin-top: 2rem;
+          "
+        >
+          <h3>
+            <i class="fas fa-chart-pie text-primary"></i> Analisis Artefak
+            Produk Pembelajaran
+          </h3>
+          <p>
+            Evaluasi kritis keterkaitan produk dengan hasil belajar muriddan
+            kesesuaian paradigma baru.
+          </p>
+        </div>
+
+        <div class="siklus-grid">
+          <!-- Aspek 1 -->
+          <div class="card">
+            <span class="analysis-tag" style="background-color: #ef4444"
+              ><i class="fas fa-exclamation-triangle"></i> Aspek 1</span
+            >
+            <h3 style="margin-top: 0.5rem">
+              Kendala yang Terjadi Selama Proses Penyusunan
+            </h3>
+            <p
+              style="
+                margin-top: 1rem;
+                color: var(--slate-gray);
+                line-height: 1.7;
+              "
+            >
+              Dalam proses penyusunan perangkat pembelajaran, tantangan terbesar
+              adalah menyesuaikan aktivitas pembelajaran dengan karakteristik
+              murid yang beragam, mengelola alokasi waktu pembelajaran, serta
+              mempersiapkan media yang mampu meningkatkan keterlibatan murid.
+              Selain itu, diperlukan beberapa kali revisi perangkat agar tujuan
+              pembelajaran, aktivitas, dan asesmen dapat saling selaras.
+            </p>
+          </div>
+
+          <!-- Aspek 2 -->
+          <div class="card">
+            <span
+              class="analysis-tag"
+              style="background-color: var(--primary-blue)"
+              ><i class="fas fa-graduation-cap"></i> Aspek 2</span
+            >
+            <h3 style="margin-top: 0.5rem">
+              Teori atau Konsep Pedagogi yang Diadopsi
+            </h3>
+            <p
+              style="
+                margin-top: 1rem;
+                color: var(--slate-gray);
+                line-height: 1.7;
+              "
+            >
+              Perangkat pembelajaran disusun dengan mengintegrasikan berbagai
+              teori yang dipelajari selama PPG. Filosofi Ki Hadjar Dewantara
+              digunakan sebagai landasan dalam menuntun murid sesuai kodratnya.
+              Teori konstruktivisme Piaget dan Vygotsky diterapkan melalui
+              kegiatan diskusi dan kolaborasi, sedangkan prinsip Pembelajaran
+              Mendalam (Deep Learning) diwujudkan melalui pembelajaran yang
+              berkesadaran, bermakna, dan menggembirakan.
+            </p>
+          </div>
+
+          <!-- Aspek 3 -->
+          <div class="card">
+            <span class="analysis-tag" style="background-color: #22c55e"
+              ><i class="fas fa-star"></i> Aspek 3</span
+            >
+            <h3 style="margin-top: 0.5rem">
+              Faktor Keberhasilan Penerapan Produk Pembelajaran
+            </h3>
+            <p
+              style="
+                margin-top: 1rem;
+                color: var(--slate-gray);
+                line-height: 1.7;
+              "
+            >
+              Keberhasilan pembelajaran didukung oleh profiling murid yang
+              dilakukan sebelum pembelajaran, penggunaan konteks yang dekat
+              dengan kehidupan murid, serta penerapan model pembelajaran yang
+              mendorong partisipasi aktif. Pemanfaatan media digital yang
+              relevan juga membantu meningkatkan motivasi dan keterlibatan murid
+              selama proses pembelajaran.
+            </p>
+          </div>
+
+          <!-- Aspek 4 -->
+          <div class="card">
+            <span class="analysis-tag" style="background-color: #eab308"
+              ><i class="fas fa-sliders-h"></i> Aspek 4</span
+            >
+            <h3 style="margin-top: 0.5rem">
+              Perubahan Komponen untuk Situasi Kelas Berbeda
+            </h3>
+            <p
+              style="
+                margin-top: 1rem;
+                color: var(--slate-gray);
+                line-height: 1.7;
+              "
+            >
+              Perangkat pembelajaran yang dikembangkan bersifat fleksibel dan
+              dapat disesuaikan dengan kondisi kelas yang berbeda. Penyesuaian
+              dapat dilakukan pada jenis media, tingkat kompleksitas aktivitas,
+              strategi pembelajaran, maupun bentuk asesmen agar tetap sesuai
+              dengan kebutuhan, karakteristik, dan lingkungan belajar murid.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             3. ARTEFAK SIKLUS 1
+             ========================================== -->
+      <section id="siklus1" class="page-section">
+        <div class="section-title-wrapper">
+          <h2>Siklus 1</h2>
+          <p
+            style="
+              font-weight: 700;
+              color: var(--primary-blue);
+              font-size: 1.15rem;
+              margin-top: 0.5rem;
+            "
+          >
+            Pengertian Empati serta Hubungan Nilai Toleransi dan Empati pada
+            Dunia Digital
+          </p>
+        </div>
+
+        <!-- Card 1: Konteks dan Tujuan -->
+        <div
+          class="card"
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-left: 5px solid var(--primary-blue);
+            margin-bottom: 2.5rem;
+          "
+        >
+          <div>
+            <h3
+              style="font-size: 1.3rem; margin-top: 0.5rem; margin-bottom: 1rem"
+            >
+              Konteks dan Tujuan
+            </h3>
+            <p
+              style="
+                color: var(--slate-gray);
+                line-height: 1.8;
+                text-align: justify;
+                font-size: 0.95rem;
+              "
+            >
+              Siklus pertama merupakan tahap awal pembelajaran yang dirancang
+              untuk membangun pemahaman dasar murid mengenai konsep empati serta
+              hubungan antara toleransi dan empati dalam kehidupan digital.
+              Berdasarkan hasil observasi dan profiling murid, diketahui bahwa
+              sebagian besar murid aktif menggunakan media sosial, namun belum
+              sepenuhnya memahami dampak perilaku digital terhadap perasaan dan
+              pengalaman orang lain.
+            </p>
+            <p
+              style="
+                color: var(--slate-gray);
+                line-height: 1.8;
+                text-align: justify;
+                font-size: 0.95rem;
+                margin-top: 1rem;
+              "
+            >
+              Melalui pembelajaran ini, murid diharapkan mampu memahami makna
+              empati, mengenali keterkaitannya dengan toleransi, serta
+              menerapkan kedua nilai tersebut dalam interaksi digital
+              sehari-hari.
+            </p>
+          </div>
+        </div>
+
+        <div class="artefacts-columns">
+          <div class="card">
+            <h3>
+              <i class="fas fa-file-pdf text-danger"></i> Rencana Pelaksanaan
+              Mendalam (RPM)
+            </h3>
+            <div class="iframe-wrapper document-ratio">
+              <iframe
+                src="https://drive.google.com/file/d/1N3CGBX7wIC0zgGmps92D3ER7MXwTC7M8/preview"
+                allow="autoplay"
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>
+              <i class="fas fa-laptop-code text-primary"></i> Media Pembelajaran
+              Interaktif
+            </h3>
+            <div class="iframe-wrapper document-ratio">
+              <iframe
+                src="https://www.canva.com/design/DAHIC9peih0/UrY7CaJXqpQ30exXOPlfOw/view?embed"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3><i class="fas fa-tasks text-success"></i> Hasil Kerja Murid</h3>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                justify-content: space-between;
+              "
+            >
+              <img
+                src="assets/hkm-p2-1.jpeg"
+                alt="HKM Siklus 1"
+                style="
+                  width: 100%;
+                  border-radius: 12px;
+                  height: 47%;
+                  object-fit: cover;
+                "
+              />
+              <img
+                src="assets/hkm-p2-2.jpeg"
+                alt="HKM Siklus 1"
+                style="
+                  width: 100%;
+                  border-radius: 12px;
+                  height: 47%;
+                  object-fit: cover;
+                "
+              />
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>
+              <i class="fas fa-clipboard-check text-accent"></i> Lembar
+              Penilaian Penyusunan Perangkat Pembelajaran & Praktik Pembelajaran
+            </h3>
+
+            <h5 style="margin-top: 1rem; color: var(--dark-navy)">
+              Penilaian Penyusunan Perangkat Pembelajaran
+            </h5>
+            <div class="iframe-wrapper document-ratio">
+              <iframe
+                src="https://drive.google.com/file/d/1qqTrR21Pr-qBXymQZAMeuyxPC7r6IZXX/preview"
+                allow="autoplay"
+              ></iframe>
+            </div>
+
+            <h5 style="margin-top: 1rem; color: var(--dark-navy)">
+              Penilaian Pelaksanaan Pembelajaran
+            </h5>
+            <div class="iframe-wrapper document-ratio">
+              <iframe
+                src="https://drive.google.com/file/d/1O6A8_LG7g50wxcQ5xMHhVGbkNlYPgsN9/preview"
+                allow="autoplay"
+              ></iframe>
+            </div>
+          </div>
+
+          <div
+            class="card two-column-span"
+            style="gap: 2rem; margin-bottom: 2rem"
+          >
+            <h3>
+              <i class="fas fa-video text-danger"></i> Rekaman Video Praktik
+              Mengajar & Foto Kegiatan Mengajar
+            </h3>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1.2fr 0.8fr;
+                gap: 2rem;
+                align-items: start; /* Mencegah stretch vertikal yang merusak layout */
+              "
+            >
+              <div class="iframe-wrapper youtube-ratio">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/J5aa5mGdNqo"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                  style="width: 100%; height: auto; aspect-ratio: 16/9"
+                ></iframe>
+              </div>
+              <div
+                style="display: grid; grid-template-rows: 1fr 1fr; gap: 1rem"
+              >
+                <img
+                  src="assets/foto-p2-1.jpg"
+                  alt="Dokumentasi Siklus 1"
+                  style="
+                    width: 100%;
+                    border-radius: 12px;
+                    height: auto;
+                    aspect-ratio: 4/3;
+                    object-fit: cover;
+                  "
+                />
+                <img
+                  src="assets/foto-p2-2.jpg"
+                  alt="Dokumentasi Siklus 2"
+                  style="
+                    width: 100%;
+                    border-radius: 12px;
+                    height: auto;
+                    aspect-ratio: 4/3;
+                    object-fit: cover;
+                  "
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 & 4: Kelebihan & Kekurangan (Side-by-side comparison) -->
+        <div class="grid-2" style="gap: 2rem; margin-bottom: 2.5rem">
+          <!-- Card 3: Kelebihan Artefak -->
+          <div
+            class="card"
+            style="
+              border-top: 5px solid #22c55e;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <h3
+                style="
+                  font-size: 1.3rem;
+                  margin-top: 0.5rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                Kelebihan Artefak
+              </h3>
+              <p
+                style="
+                  color: var(--slate-gray);
+                  line-height: 1.8;
+                  text-align: justify;
+                  font-size: 0.95rem;
+                "
+              >
+                Pembelajaran pada siklus ini berhasil mendorong murid untuk
+                menghubungkan konsep yang dipelajari dengan berbagai fenomena
+                nyata yang mereka temui di media sosial. Hasil kerja murid
+                menunjukkan kemampuan yang semakin baik dalam mengidentifikasi
+                manfaat maupun tantangan penerapan toleransi dan empati.
+              </p>
+              <p
+                style="
+                  color: var(--slate-gray);
+                  line-height: 1.8;
+                  text-align: justify;
+                  font-size: 0.95rem;
+                  margin-top: 1rem;
+                "
+              >
+                Video pembelajaran dan dokumentasi kegiatan memperlihatkan
+                meningkatnya partisipasi murid dalam kegiatan diskusi serta
+                kemampuan mereka menyampaikan pendapat secara lebih percaya
+                diri.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 4: Kekurangan Artefak -->
+          <div
+            class="card"
+            style="
+              border-top: 5px solid #ef4444;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <h3
+                style="
+                  font-size: 1.3rem;
+                  margin-top: 0.5rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                Kekurangan Artefak
+              </h3>
+              <p
+                style="
+                  color: var(--slate-gray);
+                  line-height: 1.8;
+                  text-align: justify;
+                  font-size: 0.95rem;
+                "
+              >
+                Meskipun partisipasi murid meningkat, masih terdapat beberapa
+                kelompok yang memerlukan pendampingan lebih intensif dalam
+                melakukan analisis kasus. Selain itu, tingkat kemampuan murid
+                yang beragam menyebabkan hasil diskusi kelompok belum sepenuhnya
+                merata.
+              </p>
+              <p
+                style="
+                  color: var(--slate-gray);
+                  line-height: 1.8;
+                  text-align: justify;
+                  font-size: 0.95rem;
+                  margin-top: 1rem;
+                "
+              >
+                Guru juga perlu mengembangkan variasi aktivitas yang lebih
+                menantang agar seluruh murid dapat terlibat secara optimal.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Analisis Teori dan Refleksi Pedagogis -->
+        <div
+          class="card"
+          style="
+            background: var(--light-blue);
+            border: 1.5px dashed rgba(29, 78, 216, 0.25);
+            padding: 2.5rem;
+            border-radius: 24px;
+            margin-bottom: 2rem;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              margin-bottom: 1.5rem;
+            "
+          >
+            <div
+              class="inst-icon"
+              style="background-color: var(--white); color: var(--primary-blue)"
+            >
+              <i class="fas fa-brain"></i>
+            </div>
+            <div>
+              <h4
+                style="
+                  font-weight: 800;
+                  color: var(--primary-blue);
+                  font-size: 1.3rem;
+                "
+              >
+                Analisis Teori dan Refleksi Pedagogis
+              </h4>
+            </div>
+          </div>
+
+          <p
+            style="
+              text-align: justify;
+              line-height: 1.8;
+              color: var(--dark-navy);
+              font-size: 0.98rem;
+              margin-bottom: 2rem;
+            "
+          >
+            Artefak pada siklus ini menunjukkan penerapan teori
+            <strong>Konstruktivisme Piaget</strong> yang menekankan bahwa
+            pengetahuan dibangun melalui pengalaman belajar aktif. murid
+            memperoleh pemahaman tentang empati dan toleransi melalui analisis
+            kasus yang dekat dengan kehidupan mereka. Pembelajaran juga
+            mengimplementasikan teori
+            <strong>Konstruktivisme Sosial Vygotsky</strong>, terutama melalui
+            aktivitas diskusi kelompok yang memungkinkan murid membangun
+            pengetahuan secara kolaboratif. Guru berperan sebagai fasilitator
+            yang memberikan scaffolding melalui pertanyaan pemantik dan
+            pendampingan selama proses pembelajaran.
+          </p>
+          <p
+            style="
+              text-align: justify;
+              line-height: 1.8;
+              color: var(--dark-navy);
+              font-size: 0.98rem;
+              margin-bottom: 2rem;
+            "
+          >
+            Dari perspektif <strong>Filosofi Pendidikan Nasional</strong>,
+            pembelajaran berupaya menuntun murid memahami nilai-nilai sosial
+            yang relevan dengan kodrat zaman mereka sebagai generasi digital.
+            Sementara dari perspektif <strong>PMAD</strong>, pembelajaran telah
+            menerapkan prinsip pembelajaran mendalam yang berkesadaran
+            (mindful), bermakna (meaningful), dan menggembirakan (joyful)
+            melalui konteks yang dekat dengan kehidupan murid.
+          </p>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             4. ARTEFAK SIKLUS 2
+             ========================================== -->
+      <section id="siklus2" class="page-section">
+        <div class="section-title-wrapper">
+          <h2>Siklus 2</h2>
+          <p
+            style="
+              font-weight: 700;
+              color: var(--primary-blue);
+              font-size: 1.15rem;
+              margin-top: 0.5rem;
+            "
+          >
+            Manfaat serta Tantangan dalam Mengamalkan Toleransi dan Empati pada
+            Dunia Digital
+          </p>
+        </div>
+
+        <!-- Card 1: Konteks dan Tujuan -->
+        <div
+          class="card"
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-left: 5px solid var(--primary-blue);
+            margin-bottom: 2.5rem;
+          "
+        >
+          <div>
+            <h3
+              style="font-size: 1.3rem; margin-top: 0.5rem; margin-bottom: 1rem"
+            >
+              Konteks dan Tujuan
+            </h3>
+            <p
+              style="
+                color: var(--slate-gray);
+                line-height: 1.8;
+                text-align: justify;
+                font-size: 0.95rem;
+              "
+            >
+              Siklus kedua bertujuan memperdalam pemahaman murid mengenai
+              manfaat dan tantangan dalam menerapkan toleransi dan empati di
+              dunia digital. Setelah memahami konsep dasar pada siklus
+              sebelumnya, murid diajak untuk menganalisis berbagai fenomena yang
+              terjadi dalam kehidupan digital serta dampaknya terhadap individu
+              maupun masyarakat.
+            </p>
+            <p
+              style="
+                color: var(--slate-gray);
+                line-height: 1.8;
+                text-align: justify;
+                font-size: 0.95rem;
+                margin-top: 1rem;
+              "
+            >
+              Pembelajaran dirancang agar murid mampu berpikir kritis terhadap
+              berbagai situasi yang mereka temui di lingkungan digital.
+            </p>
+          </div>
+        </div>
+
+        <div class="artefacts-columns">
+          <div class="card">
+            <h3>
+              <i class="fas fa-file-pdf text-danger"></i> Rencana Pelaksanaan
+              Mendalam (RPM)
+            </h3>
+            <div class="iframe-wrapper document-ratio">
+              <iframe
+                src="https://drive.google.com/file/d/1vYS1spEVku4iDwnYmqgz_bBwtR-7-HRe/preview"
+                allow="autoplay"
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>
+              <i class="fas fa-laptop-code text-primary"></i> Media Pembelajaran
+              Interaktif
+            </h3>
+            <div class="iframe-wrapper document-ratio">
+              <iframe
+                src="https://www.canva.com/design/DAHItepYsZU/zJiYlKVMAvOXAnNMnEcuuQ/view?embed"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3><i class="fas fa-tasks text-success"></i> Hasil Kerja Murid</h3>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                justify-content: space-between;
+              "
+            >
+              <img
+                src="assets/hkm-p3-1.jpeg"
+                alt="HKM Siklus 2"
+                style="
+                  width: 100%;
+                  border-radius: 12px;
+                  height: 47%;
+                  object-fit: cover;
+                "
+              />
+              <img
+                src="assets/hkm-p3-2.jpeg"
+                alt="HKM Siklus 2"
+                style="
+                  width: 100%;
+                  border-radius: 12px;
+                  height: 47%;
+                  object-fit: cover;
+                "
+              />
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>
+              <i class="fas fa-clipboard-check text-accent"></i> Lembar
+              Penilaian Penyusunan Perangkat Pembelajaran & Praktik Pembelajaran
+            </h3>
+
+            <h5 style="margin-top: 1rem; color: var(--dark-navy)">
+              Penilaian Penyusunan Perangkat Pembelajaran
+            </h5>
+            <div class="iframe-wrapper document-ratio">
+              <iframe
+                src="https://drive.google.com/file/d/1NHpQT31zXPGLPyQ4jN24wkhKC-2jAyod/preview"
+                allow="autoplay"
+              ></iframe>
+            </div>
+
+            <h5 style="margin-top: 1rem; color: var(--dark-navy)">
+              Penilaian Pelaksanaan Pembelajaran
+            </h5>
+            <div class="iframe-wrapper document-ratio">
+              <iframe
+                src="https://drive.google.com/file/d/1E7iMwg8gZVq5c7tKz99vVJUM6VgV5-ai/preview"
+                allow="autoplay"
+              ></iframe>
+            </div>
+          </div>
+
+          <div
+            class="card two-column-span"
+            style="gap: 2rem; margin-bottom: 2rem"
+          >
+            <h3>
+              <i class="fas fa-video text-danger"></i> Rekaman Video Praktik
+              Mengajar & Foto Kegiatan Mengajar
+            </h3>
+
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1.2fr 0.8fr;
+                gap: 2rem;
+                align-items: start; /* Mencegah stretch vertikal yang merusak layout */
+              "
+            >
+              <div class="iframe-wrapper youtube-ratio">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/pq7h7A5Aogg"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                  style="width: 100%; height: auto; aspect-ratio: 16/9"
+                ></iframe>
+              </div>
+              <div
+                style="display: grid; grid-template-rows: 1fr 1fr; gap: 1rem"
+              >
+                <img
+                  src="assets/foto-p3-1.jpg"
+                  alt="Dokumentasi Siklus 2"
+                  style="
+                    width: 100%;
+                    border-radius: 12px;
+                    height: auto;
+                    aspect-ratio: 4/3;
+                    object-fit: cover;
+                  "
+                />
+                <img
+                  src="assets/foto-p3-2.jpg"
+                  alt="Dokumentasi Siklus 2"
+                  style="
+                    width: 100%;
+                    border-radius: 12px;
+                    height: auto;
+                    aspect-ratio: 4/3;
+                    object-fit: cover;
+                  "
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 & 4: Kelebihan & Kekurangan (Side-by-side comparison) -->
+        <div class="grid-2" style="gap: 2rem; margin-bottom: 2.5rem">
+          <!-- Card 3: Kelebihan Artefak -->
+          <div
+            class="card"
+            style="
+              border-top: 5px solid #22c55e;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <h3
+                style="
+                  font-size: 1.3rem;
+                  margin-top: 0.5rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                Kelebihan Artefak
+              </h3>
+              <p
+                style="
+                  color: var(--slate-gray);
+                  line-height: 1.8;
+                  text-align: justify;
+                  font-size: 0.95rem;
+                "
+              >
+                Artefak pada siklus ini menunjukkan bahwa pembelajaran telah
+                dirancang dengan mengaitkan materi terhadap pengalaman nyata
+                murid. Penggunaan studi kasus dan media visual membantu murid
+                memahami konsep yang bersifat abstrak menjadi lebih konkret.
+              </p>
+              <p
+                style="
+                  color: var(--slate-gray);
+                  line-height: 1.8;
+                  text-align: justify;
+                  font-size: 0.95rem;
+                  margin-top: 1rem;
+                "
+              >
+                Hasil kerja murid memperlihatkan bahwa sebagian besar murid
+                mampu mengidentifikasi contoh perilaku empati dan toleransi
+                dalam kehidupan digital. Dokumentasi kegiatan dan video praktik
+                mengajar juga menunjukkan adanya keterlibatan aktif murid selama
+                proses diskusi dan presentasi kelompok.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 4: Kekurangan Artefak -->
+          <div
+            class="card"
+            style="
+              border-top: 5px solid #ef4444;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <h3
+                style="
+                  font-size: 1.3rem;
+                  margin-top: 0.5rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                Kekurangan Artefak
+              </h3>
+              <p
+                style="
+                  color: var(--slate-gray);
+                  line-height: 1.8;
+                  text-align: justify;
+                  font-size: 0.95rem;
+                "
+              >
+                Berdasarkan refleksi pembelajaran dan umpan balik dari Guru
+                Pamong maupun Dosen Pembimbing Lapangan, masih terdapat beberapa
+                murid yang kurang aktif menyampaikan pendapat saat diskusi
+                berlangsung. Selain itu, pengelolaan waktu pembelajaran belum
+                sepenuhnya optimal sehingga beberapa kelompok memerlukan waktu
+                tambahan untuk menyelesaikan tugas yang diberikan.
+              </p>
+              <p
+                style="
+                  color: var(--slate-gray);
+                  line-height: 1.8;
+                  text-align: justify;
+                  font-size: 0.95rem;
+                  margin-top: 1rem;
+                "
+              >
+                Variasi asesmen juga masih dapat ditingkatkan agar mampu
+                menggambarkan capaian belajar murid secara lebih komprehensif.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Analisis Teori dan Refleksi Pedagogis -->
+        <div
+          class="card"
+          style="
+            background: var(--light-blue);
+            border: 1.5px dashed rgba(29, 78, 216, 0.25);
+            padding: 2.5rem;
+            border-radius: 24px;
+            margin-bottom: 2rem;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              margin-bottom: 1.5rem;
+            "
+          >
+            <div
+              class="inst-icon"
+              style="background-color: var(--white); color: var(--primary-blue)"
+            >
+              <i class="fas fa-brain"></i>
+            </div>
+            <div>
+              <h4
+                style="
+                  font-weight: 800;
+                  color: var(--primary-blue);
+                  font-size: 1.3rem;
+                "
+              >
+                Analisis Teori dan Refleksi Pedagogis
+              </h4>
+            </div>
+          </div>
+
+          <p
+            style="
+              text-align: justify;
+              line-height: 1.8;
+              color: var(--dark-navy);
+              font-size: 0.98rem;
+              margin-bottom: 2rem;
+            "
+          >
+            Artefak pada siklus kedua menunjukkan implementasi teori
+            <strong>Pembelajaran Sosial Bandura</strong>, di mana murid belajar
+            melalui pengamatan terhadap berbagai contoh perilaku digital yang
+            disajikan dalam kasus pembelajaran. Aktivitas diskusi kelompok juga
+            mencerminkan penerapan <strong>Vygotsky</strong> yang menekankan
+            pentingnya interaksi sosial dalam proses belajar. murid saling
+            membantu membangun pemahaman melalui kerja sama dan pertukaran ide.
+          </p>
+          <p
+            style="
+              text-align: justify;
+              line-height: 1.8;
+              color: var(--dark-navy);
+              font-size: 0.98rem;
+              margin-bottom: 2rem;
+            "
+          >
+            Dari perspektif <strong>PPDP</strong>, pembelajaran telah
+            memperhatikan karakteristik murid dan memberikan ruang bagi mereka
+            untuk mengembangkan kemampuan berpikir kritis, komunikasi, serta
+            kolaborasi. Sedangkan dari perspektif PMAD, kegiatan pembelajaran
+            dirancang untuk mendorong murid melakukan refleksi terhadap
+            pengalaman dan realitas kehidupan digital yang mereka hadapi
+            sehari-hari.
+          </p>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             5. ARTEFAK SIKLUS 3
+             ========================================== -->
+      <section id="siklus3" class="page-section">
+        <div class="section-title-wrapper">
+          <h2>Siklus 3</h2>
+          <p
+            style="
+              font-weight: 700;
+              color: var(--primary-blue);
+              font-size: 1.15rem;
+              margin-top: 0.5rem;
+            "
+          >
+            Strategi dalam Mengamalkan Toleransi dan Empati pada Dunia Digital
+          </p>
+        </div>
+
+        <!-- Card 1: Konteks dan Tujuan -->
+        <div
+          class="card"
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-left: 5px solid var(--primary-blue);
+            margin-bottom: 2.5rem;
+          "
+        >
+          <div>
+            <h3
+              style="font-size: 1.3rem; margin-top: 0.5rem; margin-bottom: 1rem"
+            >
+              Konteks dan Tujuan
+            </h3>
+            <p
+              style="
+                color: var(--slate-gray);
+                line-height: 1.8;
+                text-align: justify;
+                font-size: 0.95rem;
+              "
+            >
+              Siklus ketiga merupakan tahap implementasi yang menekankan
+              kemampuan murid dalam merancang strategi nyata untuk mengamalkan
+              toleransi dan empati dalam kehidupan digital. Pada tahap ini murid
+              tidak hanya memahami konsep, tetapi juga menghasilkan karya yang
+              menunjukkan penerapan pengetahuan yang telah dipelajari.
+            </p>
+            <p
+              style="
+                color: var(--slate-gray);
+                line-height: 1.8;
+                text-align: justify;
+                font-size: 0.95rem;
+                margin-top: 1rem;
+              "
+            >
+              Tujuan utama pembelajaran adalah membantu murid menerapkan nilai
+              toleransi dan empati melalui produk kreatif yang dapat digunakan
+              sebagai media kampanye positif di lingkungan digital.
+            </p>
+          </div>
+        </div>
+
+        <div class="artefacts-columns">
+          <div class="card">
+            <h3>
+              <i class="fas fa-file-pdf text-danger"></i> Rencana Pelaksanaan
+              Mendalam (RPM)
+            </h3>
+            <div class="iframe-wrapper document-ratio">
+              <iframe
+                src="https://drive.google.com/file/d/1YEGSWN7v2KEFS-qtBrlEUVRvPa4gLr1J/preview"
+                allow="autoplay"
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>
+              <i class="fas fa-laptop-code text-primary"></i> Media Pembelajaran
+              Interaktif
+            </h3>
+            <div class="iframe-wrapper document-ratio">
+              <iframe
+                src="https://www.canva.com/design/DAHJnMjcY0I/O3YgV_nztnwREGVOW44vWQ/view?embed"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3><i class="fas fa-tasks text-success"></i> Hasil Kerja Murid</h3>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                justify-content: space-between;
+              "
+            >
+              <img
+                src="assets/hkm-p4-1.jpeg"
+                alt="HKM Siklus 3"
+                style="
+                  width: 100%;
+                  border-radius: 12px;
+                  height: 47%;
+                  object-fit: cover;
+                "
+              />
+              <img
+                src="assets/hkm-p4-2.jpeg"
+                alt="HKM Siklus 3"
+                style="
+                  width: 100%;
+                  border-radius: 12px;
+                  height: 47%;
+                  object-fit: cover;
+                "
+              />
+              <img
+                src="assets/hkm-p4-3.jpeg"
+                alt="HKM Siklus 3"
+                style="
+                  width: 100%;
+                  border-radius: 12px;
+                  height: 47%;
+                  object-fit: cover;
+                "
+              />
+              <img
+                src="assets/hkm-p4-4.jpeg"
+                alt="HKM Siklus 3"
+                style="
+                  width: 100%;
+                  border-radius: 12px;
+                  height: 47%;
+                  object-fit: cover;
+                "
+              />
+              <img
+                src="assets/hkm-p4-5.jpeg"
+                alt="HKM Siklus 3"
+                style="
+                  width: 100%;
+                  border-radius: 12px;
+                  height: 47%;
+                  object-fit: cover;
+                "
+              />
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>
+              <i class="fas fa-clipboard-check text-accent"></i> Lembar
+              Penilaian Penyusunan Perangkat Pembelajaran & Praktik Pembelajaran
+            </h3>
+
+            <h5 style="margin-top: 1rem; color: var(--dark-navy)">
+              Penilaian Penyusunan Perangkat Pembelajaran
+            </h5>
+            <div class="iframe-wrapper document-ratio">
+              <iframe
+                src="https://drive.google.com/file/d/1_B5ul-zKSalK92g37rpVCUtrvlg8Paxh/preview"
+                allow="autoplay"
+              ></iframe>
+            </div>
+
+            <h5 style="margin-top: 1rem; color: var(--dark-navy)">
+              Penilaian Pelaksanaan Pembelajaran
+            </h5>
+            <div class="iframe-wrapper document-ratio">
+              <iframe
+                src="https://drive.google.com/file/d/1ZrOXjibETZSfCW7iXQ8_rnNsCI51qRpu/preview"
+                allow="autoplay"
+              ></iframe>
+            </div>
+          </div>
+
+          <div
+            class="card two-column-span"
+            style="gap: 2rem; margin-bottom: 2rem"
+          >
+            <h3>
+              <i class="fas fa-video text-danger"></i> Rekaman Video Praktik
+              Mengajar & Foto Kegiatan Mengajar
+            </h3>
+
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1.2fr 0.8fr;
+                gap: 2rem;
+                align-items: start;
+              "
+            >
+              <div class="iframe-wrapper youtube-ratio">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/TNzX-jQC4h8"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                  style="width: 100%; height: auto; aspect-ratio: 16/9"
+                ></iframe>
+              </div>
+              <div
+                style="display: grid; grid-template-rows: 1fr 1fr; gap: 1rem"
+              >
+                <img
+                  src="assets/foto-p3-1.jpg"
+                  alt="Dokumentasi Siklus 3"
+                  style="
+                    width: 100%;
+                    border-radius: 12px;
+                    height: auto;
+                    aspect-ratio: 4/3;
+                    object-fit: cover;
+                  "
+                />
+                <img
+                  src="assets/foto-p3-2.jpg"
+                  alt="Dokumentasi Siklus 3"
+                  style="
+                    width: 100%;
+                    border-radius: 12px;
+                    height: auto;
+                    aspect-ratio: 4/3;
+                    object-fit: cover;
+                  "
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 & 4: Kelebihan & Kekurangan (Side-by-side comparison) -->
+        <div class="grid-2" style="gap: 2rem; margin-bottom: 2.5rem">
+          <!-- Card 3: Kelebihan Artefak -->
+          <div
+            class="card"
+            style="
+              border-top: 5px solid #22c55e;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <h3
+                style="
+                  font-size: 1.3rem;
+                  margin-top: 0.5rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                Kelebihan Artefak
+              </h3>
+              <p
+                style="
+                  color: var(--slate-gray);
+                  line-height: 1.8;
+                  text-align: justify;
+                  font-size: 0.95rem;
+                "
+              >
+                Artefak pada siklus ini menunjukkan kemampuan murid dalam
+                mengintegrasikan pengetahuan, keterampilan, dan kreativitas
+                melalui produk poster yang dihasilkan. Sebagian besar murid
+                mampu merancang strategi yang relevan dan aplikatif dalam
+                mengamalkan toleransi dan empati di dunia digital.
+              </p>
+              <p
+                style="
+                  color: var(--slate-gray);
+                  line-height: 1.8;
+                  text-align: justify;
+                  font-size: 0.95rem;
+                  margin-top: 1rem;
+                "
+              >
+                Hasil karya yang dihasilkan juga menunjukkan adanya peningkatan
+                pemahaman dibandingkan siklus sebelumnya.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 4: Kekurangan Artefak -->
+          <div
+            class="card"
+            style="
+              border-top: 5px solid #ef4444;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              margin-bottom: 2.5rem;
+            "
+          >
+            <div>
+              <h3
+                style="
+                  font-size: 1.3rem;
+                  margin-top: 0.5rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                Kekurangan Artefak
+              </h3>
+              <p
+                style="
+                  color: var(--slate-gray);
+                  line-height: 1.8;
+                  text-align: justify;
+                  font-size: 0.95rem;
+                "
+              >
+                Perbedaan kemampuan desain dan kreativitas menyebabkan kualitas
+                produk yang dihasilkan cukup beragam. Beberapa murid masih
+                memerlukan arahan lebih lanjut dalam menuangkan ide ke dalam
+                bentuk visual yang efektif.
+              </p>
+              <p
+                style="
+                  color: var(--slate-gray);
+                  line-height: 1.8;
+                  text-align: justify;
+                  font-size: 0.95rem;
+                  margin-top: 1rem;
+                "
+              >
+                Selain itu, keterbatasan waktu membuat proses revisi dan
+                penyempurnaan poster belum dapat dilakukan secara maksimal.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Analisis Teori dan Refleksi Pedagogis -->
+        <div
+          class="card"
+          style="
+            background: var(--light-blue);
+            border: 1.5px dashed rgba(29, 78, 216, 0.25);
+            padding: 2.5rem;
+            border-radius: 24px;
+            margin-bottom: 2rem;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              margin-bottom: 1.5rem;
+            "
+          >
+            <div
+              class="inst-icon"
+              style="background-color: var(--white); color: var(--primary-blue)"
+            >
+              <i class="fas fa-brain"></i>
+            </div>
+            <div>
+              <h4
+                style="
+                  font-weight: 800;
+                  color: var(--primary-blue);
+                  font-size: 1.3rem;
+                "
+              >
+                Analisis Teori dan Refleksi Pedagogis
+              </h4>
+            </div>
+          </div>
+
+          <p
+            style="
+              text-align: justify;
+              line-height: 1.8;
+              color: var(--dark-navy);
+              font-size: 0.98rem;
+              margin-bottom: 2rem;
+            "
+          >
+            Artefak pada siklus ketiga menunjukkan penerapan pendekatan
+            <strong>Project-Based Learning</strong> karena murid menghasilkan
+            produk nyata sebagai bentuk penerapan hasil belajar. Melalui
+            pembuatan poster, murid tidak hanya memahami konsep tetapi juga
+            mengomunikasikan gagasan secara kreatif. Pembelajaran ini juga
+            mencerminkan prinsip <strong>konstruktivisme</strong> karena murid
+            membangun pemahaman melalui proses merancang, berdiskusi, dan
+            menghasilkan karya. Dari perspektif <strong>PMAD</strong>, aktivitas
+            pembelajaran telah memenuhi karakteristik pembelajaran mendalam
+            karena murid mampu menghubungkan konsep dengan kehidupan nyata dan
+            menghasilkan solusi yang bermakna.
+          </p>
+          <p
+            style="
+              text-align: justify;
+              line-height: 1.8;
+              color: var(--dark-navy);
+              font-size: 0.98rem;
+              margin-bottom: 2rem;
+            "
+          >
+            Secara reflektif, siklus ini menunjukkan bahwa pembelajaran yang
+            memberikan kesempatan kepada murid untuk berkarya dan menyelesaikan
+            masalah nyata mampu meningkatkan keterlibatan, kreativitas, serta
+            pemahaman yang lebih mendalam terhadap materi yang dipelajari.
+          </p>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             6. PROFILING murid
+             ========================================== -->
+      <section id="profiling" class="page-section">
+        <div class="section-title-wrapper">
+          <h2>Laporan Profiling murid</h2>
+          <p>
+            Analisis demografis, gaya belajar, serta kesiapan kognitif murid
+            untuk pembelajaran berbasis data.
+          </p>
+        </div>
+
+        <div class="siklus-grid">
+          <div class="card">
+            <h3>
+              <i class="fas fa-chart-bar text-primary"></i> Deskripsi & Jenis
+              Asesmen Profiling
+            </h3>
+            <p
+              style="
+                margin-top: 1rem;
+                color: var(--slate-gray);
+                line-height: 1.7;
+              "
+            >
+              Profiling dilakukan pada awal pembelajaran terhadap 31 murid kelas
+              VIII.2 SMPN 25 Padang. Terdapat beberapa instrumen dalam angket
+              profiling murid, yaitu asesmen awal tes dan non-tes, angket
+              interaksi sosial murid di lingkungan, asesemen gaya belajar
+              visul-kinestetik-auditorial, wawancara, serta observasi perilaku
+              saat pembelajaran.
+            </p>
+          </div>
+
+          <div class="artefacts-columns">
+            <div class="card">
+              <h3>
+                <i class="fas fa-file-signature text-accent"></i> Angket
+                Profiling Murid
+              </h3>
+              <div class="iframe-wrapper document-ratio">
+                <iframe
+                  src="https://drive.google.com/file/d/1rjfJinDfeiFhp3Bd27xLWOCy1P49ejq1/preview"
+                  allow="autoplay"
+                ></iframe>
+              </div>
+            </div>
+            <div class="card">
+              <h3>
+                <i class="fas fa-clipboard-list text-success"></i> Beberapa
+                Hasil Profiling Murid
+              </h3>
+              <div class="iframe-wrapper document-ratio">
+                <iframe
+                  src="https://drive.google.com/file/d/1-MSIpWzvVDCLk1TQDXY456SS3GlDG5XT/preview"
+                  allow="autoplay"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             7. LOGBOOK KEGIATAN PPL
+             ========================================== -->
+      <section id="logbook" class="page-section">
+        <div class="section-title-wrapper">
+          <h2>Logbook Kegiatan PPL</h2>
+          <p>
+            Catatan rekam jejak aktivitas harian, progres bimbingan, and
+            administrasi berkala selama masa praktik lapangan.
+          </p>
+        </div>
+
+        <div class="artefacts-columns">
+          <!-- Logbook DPL -->
+          <div class="card">
+            <h3>
+              <i class="fas fa-user-tie text-primary"></i> Logbook Bimbingan
+              Bersama DPL
+            </h3>
+            <p
+              style="
+                color: var(--slate-gray);
+                margin-top: 0.5rem;
+                margin-bottom: 1.5rem;
+                font-size: 0.95rem;
+                line-height: 1.6;
+              "
+            >
+              Memuat dokumentasi catatan konsultasi, arahan teoretis, serta
+              umpan balik yang diberikan oleh DPL selama kegiatan PPL.
+            </p>
+            <div class="iframe-wrapper document-ratio">
+              <iframe
+                src="https://drive.google.com/file/d/114kfY_vLtPedgw9ENnORJuBlXLEFSyzV/preview"
+                allow="autoplay"
+              ></iframe>
+            </div>
+          </div>
+
+          <!-- Logbook Guru Pamong -->
+          <div class="card">
+            <h3>
+              <i class="fas fa-chalkboard-teacher text-accent"></i> Logbook
+              Harian Bersama Guru Pamong
+            </h3>
+            <p
+              style="
+                color: var(--slate-gray);
+                margin-top: 0.5rem;
+                margin-bottom: 1.5rem;
+                font-size: 0.95rem;
+                line-height: 1.6;
+              "
+            >
+              Catatan aktivitas real-time harian selama melaksanakan kegiatan
+              PPL di SMPN 25 Padang yang divalidasi langsung oleh Guru Pamong.
+            </p>
+            <div class="iframe-wrapper document-ratio">
+              <iframe
+                src="https://drive.google.com/file/d/1cxNnQ7Sf94tPoPHq6B4KgZmkkw4_KLSg/preview"
+                allow="autoplay"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             9. KUNJUNGAN DPL
+             ========================================== -->
+      <section id="kunjungan-dpl" class="page-section">
+        <div class="section-title-wrapper">
+          <h2>Kunjungan DPL</h2>
+          <p>
+            Kunjungan Lapangan, Bukti Administratif, serta Penilaian
+            Komprehensif Proses Bimbingan.
+          </p>
+        </div>
+
+        <div class="dpl-layout-grid">
+          <!-- Ringkasan Kunjungan Atas -->
+          <div class="card dpl-top-card">
+            <div class="dpl-badge-counter">
+              <i class="fas fa-calendar-check"></i> Intensitas Kunjungan: 4 Kali
+              Pertemuan
+            </div>
+            <h3>
+              <i
+                class="fas fa-university text-primary"
+                style="margin-right: 0.5rem"
+              ></i>
+              Pendampingan Dosen Pembimbing Lapangan
+            </h3>
+            <p
+              style="
+                margin-top: 1rem;
+                color: var(--slate-gray);
+                line-height: 1.7;
+              "
+            >
+              Selama kegiatan PPL Terbimbing di <strong>SMPN 25 Padang</strong>,
+              Dosen Pembimbing Lapangan (DPL) melakukan kunjungan berkala
+              sebanyak empat kali. Setiap kunjungan mencakup observasi langsung
+              terhadap proses pembelajaran riil di dalam kelas serta pelaksanaan
+              diskusi reflektif pasca-mengajar bersama mahasiswa PPG dan Guru
+              Pamong. Kehadiran DPL menjadi instrumen penting untuk mentransfer
+              umpan balik konstruktif yang mendalam, melakukan rekonstruksi
+              klinis atas perangkat ajar, serta memastikan jalannya praktik
+              penuntunan murid berjalan sesuai regulasi akademik dan standar
+              kompetensi pedagogis yang diharapkan.
+            </p>
+          </div>
+
+          <!-- Konten Utama Dua Kolom (Kiri: Dokumen, Kanan: Galeri Foto) -->
+          <div class="dpl-content-container">
+            <!-- Kolom Kiri: Google Drive Preview -->
+            <div class="card" style="display: flex; flex-direction: column">
+              <h3 style="margin-bottom: 1.25rem">
+                <i
+                  class="fas fa-file-signature text-danger"
+                  style="margin-right: 0.5rem"
+                ></i>
+                Lembar Penilaian Perangkat Pembelajaran
+              </h3>
+              <div
+                class="iframe-wrapper document-ratio"
+                style="flex-grow: 1; min-height: 420px"
+              >
+                <iframe
+                  src="https://drive.google.com/file/d/1D6an9oL0wkztmi4X7M-5tYvtAlfVjuvi/preview"
+                  allow="autoplay"
+                  style="
+                    border: none;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 8px;
+                  "
+                ></iframe>
+              </div>
+            </div>
+
+            <!-- Kolom Kanan: Grid Galeri Foto Dokumentasi Bersih -->
+            <div class="card">
+              <h3>
+                <i
+                  class="fas fa-images text-success"
+                  style="margin-right: 0.5rem"
+                ></i>
+                Dokumentasi Kegiatan Kunjungan & Bimbingan
+              </h3>
+              <p
+                style="
+                  color: var(--slate-gray);
+                  font-size: 0.9rem;
+                  margin-top: 0.5rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                Kumpulan dokumentasi otentik proses pendampingan instruksional
+                dari tahapan awal hingga akhir PPL Terbimbing:
+              </p>
+
+              <div class="dpl-gallery-grid">
+                <!-- Foto 1 -->
+                <div class="dpl-gallery-item">
+                  <div class="dpl-img-wrapper">
+                    <img
+                      src="assets/dpl-1.jpeg"
+                      alt="Pengantaran Mahasiswa PPG"
+                      onerror="
+                        this.src =
+                          'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600&auto=format&fit=crop'
+                      "
+                    />
+                  </div>
+                  <div class="dpl-caption">
+                    <i
+                      class="fas fa-arrow-right text-primary"
+                      style="margin-right: 0.25rem"
+                    ></i>
+                    Pengantaran Mahasiswa PPG Prajabatan
+                  </div>
+                </div>
+
+                <!-- Foto 2 -->
+                <div class="dpl-gallery-item">
+                  <div class="dpl-img-wrapper">
+                    <img
+                      src="assets/dpl-2.jpeg"
+                      alt="Diskusi Refleksi 1"
+                      onerror="
+                        this.src =
+                          'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600&auto=format&fit=crop'
+                      "
+                    />
+                  </div>
+                  <div class="dpl-caption">
+                    <i
+                      class="fas fa-comments text-success"
+                      style="margin-right: 0.25rem"
+                    ></i>
+                    Diskusi bersama DPL & Guru Pamong
+                  </div>
+                </div>
+
+                <!-- Foto 3 -->
+                <div class="dpl-gallery-item">
+                  <div class="dpl-img-wrapper">
+                    <img
+                      src="assets/dpl-3.jpg"
+                      alt="Diskusi Perangkat Ajar"
+                      onerror="
+                        this.src =
+                          'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600&auto=format&fit=crop'
+                      "
+                    />
+                  </div>
+                  <div class="dpl-caption">
+                    <i
+                      class="fas fa-chalkboard-teacher text-warning"
+                      style="margin-right: 0.25rem"
+                    ></i>
+                    Monitoring Kegiatan PPL
+                  </div>
+                </div>
+
+                <!-- Foto 4 -->
+                <div class="dpl-gallery-item">
+                  <div class="dpl-img-wrapper">
+                    <img
+                      src="assets/dpl-4.jpg"
+                      alt="Penjemputan Mahasiswa"
+                      onerror="
+                        this.src =
+                          'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=600&auto=format&fit=crop'
+                      "
+                    />
+                  </div>
+                  <div class="dpl-caption">
+                    <i
+                      class="fas fa-check-circle text-info"
+                      style="margin-right: 0.25rem"
+                    ></i>
+                    Penjemputan Akhir Mahasiswa PPG Prajabatan
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             10. MODEL GURU YANG DITUJU
+             ========================================== -->
+      <section id="model-guru" class="page-section">
+        <div class="section-title-wrapper">
+          <h2>Model Guru yang Dituju</h2>
+          <p>
+            Visi, misi pengembangan diri, target kompetensi, serta refleksi
+            rencana tindak lanjut saya sebagai calon guru Informatika
+            profesional.
+          </p>
+        </div>
+
+        <!-- BLOK 1: VISI & MISI (Cards 1 & 2) -->
+        <div class="grid-2" style="margin-bottom: 2.5rem; gap: 2rem">
+          <!-- Card 1: Visi Guru yang Dituju -->
+          <div
+            class="card"
+            style="
+              background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+              color: var(--white);
+              border: none;
+              padding: 2.5rem;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              position: relative;
+              overflow: hidden;
+              border-radius: 24px;
+              min-height: 320px;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                right: -20px;
+                bottom: -20px;
+                font-size: 10rem;
+                color: rgba(255, 255, 255, 0.03);
+                pointer-events: none;
+              "
+            >
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <span
+              class="analysis-tag"
+              style="
+                background-color: var(--accent-pink);
+                color: var(--white);
+                align-self: flex-start;
+                margin-bottom: 1rem;
+              "
+            >
+              <i class="fas fa-eye"></i> Cita-Cita & Visi Utama
+            </span>
+            <h3
+              style="
+                color: var(--white);
+                font-weight: 800;
+                font-size: 1.6rem;
+                margin-bottom: 1rem;
+              "
+            >
+              Visi Guru yang Dituju
+            </h3>
+            <p
+              style="
+                line-height: 1.8;
+                text-align: justify;
+                font-size: 0.95rem;
+                opacity: 0.95;
+              "
+            >
+              Saya bercita-cita menjadi guru Informatika yang profesional,
+              reflektif, inovatif, dan adaptif terhadap perkembangan teknologi,
+              serta mampu menciptakan pembelajaran yang bermakna bagi peserta
+              didik. Saya ingin menjadi guru yang tidak hanya membantu peserta
+              didik menguasai keterampilan digital, tetapi juga membimbing
+              mereka menjadi warga digital yang cerdas, berkarakter, bertanggung
+              jawab, dan mampu memanfaatkan teknologi secara positif dalam
+              kehidupan sehari-hari.
+            </p>
+          </div>
+
+          <!-- Card 2: Misi Pengembangan Diri -->
+          <div
+            class="card"
+            style="
+              border-radius: 24px;
+              padding: 2.5rem;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              border: 1px solid var(--border-color);
+              background: var(--white);
+            "
+          >
+            <div>
+              <span
+                class="analysis-tag"
+                style="
+                  background-color: var(--primary-blue);
+                  color: var(--white);
+                  margin-bottom: 1rem;
+                "
+              >
+                <i class="fas fa-paper-plane"></i> Komitmen Tindakan
+              </span>
+              <h3
+                style="
+                  font-weight: 800;
+                  font-size: 1.5rem;
+                  color: var(--dark-navy);
+                  margin-bottom: 1rem;
+                "
+              >
+                Misi Pengembangan Diri
+              </h3>
+              <p
+                style="
+                  line-height: 1.8;
+                  text-align: justify;
+                  font-size: 0.95rem;
+                  color: var(--slate-gray);
+                  margin-bottom: 1.5rem;
+                "
+              >
+                Untuk mewujudkan visi tersebut, saya berkomitmen untuk terus
+                mengembangkan kualitas pembelajaran melalui beberapa langkah
+                nyata, yaitu meningkatkan literasi digital murid, menciptakan
+                pembelajaran yang aktif dan menyenangkan, memanfaatkan teknologi
+                sebagai sarana belajar yang relevan, serta menanamkan
+                nilai-nilai karakter digital seperti toleransi, empati, tanggung
+                jawab, dan etika dalam berinteraksi di ruang digital. Misi ini
+                menjadi arah yang akan saya pegang dalam perjalanan menuju guru
+                profesional.
+              </p>
+            </div>
+
+            <!-- Quick checklist of actions -->
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.75rem;
+                border-top: 1px solid var(--border-color);
+                padding-top: 1.25rem;
+              "
+            >
+              <div
+                style="
+                  font-size: 0.8rem;
+                  font-weight: 700;
+                  color: var(--primary-blue);
+                  display: flex;
+                  align-items: center;
+                  gap: 6px;
+                "
+              >
+                <i class="fas fa-check-circle"></i> Literasi Digital
+              </div>
+              <div
+                style="
+                  font-size: 0.8rem;
+                  font-weight: 700;
+                  color: var(--primary-blue);
+                  display: flex;
+                  align-items: center;
+                  gap: 6px;
+                "
+              >
+                <i class="fas fa-check-circle"></i> Belajar Menyenangkan
+              </div>
+              <div
+                style="
+                  font-size: 0.8rem;
+                  font-weight: 700;
+                  color: var(--primary-blue);
+                  display: flex;
+                  align-items: center;
+                  gap: 6px;
+                "
+              >
+                <i class="fas fa-check-circle"></i> Integrasi Teknologi
+              </div>
+              <div
+                style="
+                  font-size: 0.8rem;
+                  font-weight: 700;
+                  color: var(--primary-blue);
+                  display: flex;
+                  align-items: center;
+                  gap: 6px;
+                "
+              >
+                <i class="fas fa-check-circle"></i> Karakter & Etika Digital
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOK 2: KOMPETENSI & KARAKTER (Cards 3 & 4) -->
+        <div class="grid-2" style="margin-bottom: 2.5rem; gap: 2rem">
+          <!-- Card 3: Kompetensi yang Ingin Dibangun -->
+          <div class="card" style="padding: 2.2rem; border-radius: 20px">
+            <span
+              class="analysis-tag"
+              style="
+                background-color: var(--accent-pink);
+                color: var(--white);
+                margin-bottom: 1rem;
+              "
+            >
+              <i class="fas fa-cubes"></i> Empat Pilar Kinerja
+            </span>
+            <h3
+              style="
+                font-weight: 800;
+                font-size: 1.4rem;
+                color: var(--dark-navy);
+                margin-bottom: 1rem;
+              "
+            >
+              Kompetensi yang Ingin Dibangun
+            </h3>
+            <p
+              style="
+                line-height: 1.7;
+                text-align: justify;
+                font-size: 0.92rem;
+                color: var(--slate-gray);
+                margin-bottom: 1.5rem;
+              "
+            >
+              Sebagai calon guru profesional, saya menyadari bahwa keberhasilan
+              pembelajaran tidak hanya ditentukan oleh penguasaan materi, tetapi
+              juga oleh kemampuan guru dalam mengelola proses belajar secara
+              menyeluruh. Oleh karena itu, saya ingin terus mengembangkan
+              kompetensi pedagogik dalam merancang pembelajaran yang berpusat
+              pada murid, kompetensi profesional dalam mengikuti perkembangan
+              ilmu dan teknologi, kompetensi sosial dalam membangun komunikasi
+              yang positif dengan seluruh warga sekolah, serta kompetensi
+              kepribadian agar mampu menjadi teladan yang berintegritas,
+              disiplin, dan bertanggung jawab.
+            </p>
+
+            <!-- Grid 4 Kompetensi -->
+            <div
+              style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem"
+            >
+              <div
+                style="
+                  background-color: var(--light-blue);
+                  padding: 0.85rem;
+                  border-radius: 12px;
+                  border-left: 4px solid var(--primary-blue);
+                "
+              >
+                <span
+                  style="
+                    font-size: 0.75rem;
+                    font-weight: 800;
+                    color: var(--primary-blue);
+                    text-transform: uppercase;
+                    display: block;
+                    margin-bottom: 3px;
+                  "
+                  >Pedagogik</span
+                >
+                <span style="font-size: 0.8rem; color: var(--dark-navy)"
+                  >Rancangan ajar berpusat pada murid</span
+                >
+              </div>
+              <div
+                style="
+                  background-color: var(--light-blue);
+                  padding: 0.85rem;
+                  border-radius: 12px;
+                  border-left: 4px solid var(--primary-blue);
+                "
+              >
+                <span
+                  style="
+                    font-size: 0.75rem;
+                    font-weight: 800;
+                    color: var(--primary-blue);
+                    text-transform: uppercase;
+                    display: block;
+                    margin-bottom: 3px;
+                  "
+                  >Profesional</span
+                >
+                <span style="font-size: 0.8rem; color: var(--dark-navy)"
+                  >Mengikuti tren ilmu & teknologi</span
+                >
+              </div>
+              <div
+                style="
+                  background-color: var(--light-blue);
+                  padding: 0.85rem;
+                  border-radius: 12px;
+                  border-left: 4px solid var(--primary-blue);
+                "
+              >
+                <span
+                  style="
+                    font-size: 0.75rem;
+                    font-weight: 800;
+                    color: var(--primary-blue);
+                    text-transform: uppercase;
+                    display: block;
+                    margin-bottom: 3px;
+                  "
+                  >Sosial</span
+                >
+                <span style="font-size: 0.8rem; color: var(--dark-navy)"
+                  >Komunikasi positif warga sekolah</span
+                >
+              </div>
+              <div
+                style="
+                  background-color: var(--light-blue);
+                  padding: 0.85rem;
+                  border-radius: 12px;
+                  border-left: 4px solid var(--primary-blue);
+                "
+              >
+                <span
+                  style="
+                    font-size: 0.75rem;
+                    font-weight: 800;
+                    color: var(--primary-blue);
+                    text-transform: uppercase;
+                    display: block;
+                    margin-bottom: 3px;
+                  "
+                  >Kepribadian</span
+                >
+                <span style="font-size: 0.8rem; color: var(--dark-navy)"
+                  >Teladan berintegritas & disiplin</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Karakter Guru yang Ingin Dibangun -->
+          <div
+            class="card"
+            style="
+              padding: 2.2rem;
+              border-radius: 20px;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <span
+                class="analysis-tag"
+                style="
+                  background-color: var(--primary-blue);
+                  color: var(--white);
+                  margin-bottom: 1rem;
+                "
+              >
+                <i class="fas fa-user-tag"></i> Kepribadian Pendidik
+              </span>
+              <h3
+                style="
+                  font-weight: 800;
+                  font-size: 1.4rem;
+                  color: var(--dark-navy);
+                  margin-bottom: 1rem;
+                "
+              >
+                Karakter Guru yang Ingin Dibangun
+              </h3>
+              <p
+                style="
+                  line-height: 1.7;
+                  text-align: justify;
+                  font-size: 0.92rem;
+                  color: var(--slate-gray);
+                  margin-bottom: 1.5rem;
+                "
+              >
+                Melalui pengalaman PPL Terbimbing, saya semakin memahami bahwa
+                guru profesional bukan hanya pengajar, tetapi juga pembimbing,
+                fasilitator, motivator, dan pembelajar sepanjang hayat. Oleh
+                karena itu, karakter yang ingin saya bangun adalah
+                <strong
+                  >humanis, pedagogis, reflektif, adaptif terhadap perubahan,
+                  dan terbuka terhadap pembelajaran baru</strong
+                >. Saya ingin menjadi guru yang mampu memahami kebutuhan murid,
+                menghargai keberagaman karakter mereka, serta menciptakan
+                lingkungan belajar yang aman, nyaman, dan mendukung perkembangan
+                setiap individu.
+              </p>
+            </div>
+
+            <!-- Horizontal flow of target characters -->
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap">
+              <span
+                style="
+                  background-color: var(--soft-pink-bg);
+                  color: var(--accent-pink);
+                  font-size: 0.75rem;
+                  font-weight: 700;
+                  padding: 0.35rem 0.8rem;
+                  border-radius: 50px;
+                "
+                >Humanis</span
+              >
+              <span
+                style="
+                  background-color: var(--soft-pink-bg);
+                  color: var(--accent-pink);
+                  font-size: 0.75rem;
+                  font-weight: 700;
+                  padding: 0.35rem 0.8rem;
+                  border-radius: 50px;
+                "
+                >Pedagogis</span
+              >
+              <span
+                style="
+                  background-color: var(--soft-pink-bg);
+                  color: var(--accent-pink);
+                  font-size: 0.75rem;
+                  font-weight: 700;
+                  padding: 0.35rem 0.8rem;
+                  border-radius: 50px;
+                "
+                >Reflektif</span
+              >
+              <span
+                style="
+                  background-color: var(--soft-pink-bg);
+                  color: var(--accent-pink);
+                  font-size: 0.75rem;
+                  font-weight: 700;
+                  padding: 0.35rem 0.8rem;
+                  border-radius: 50px;
+                "
+                >Adaptif</span
+              >
+              <span
+                style="
+                  background-color: var(--soft-pink-bg);
+                  color: var(--accent-pink);
+                  font-size: 0.75rem;
+                  font-weight: 700;
+                  padding: 0.35rem 0.8rem;
+                  border-radius: 50px;
+                "
+                >Terbuka</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOK 3: EVALUASI DIRI SWOT (Cards 5 & 6) -->
+        <div class="grid-2" style="margin-bottom: 2.5rem; gap: 2rem">
+          <!-- Card 5: Kekuatan yang Saya Miliki -->
+          <div
+            class="card"
+            style="
+              border-top: 5px solid #22c55e;
+              border-radius: 20px;
+              padding: 2.2rem;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <span
+                class="analysis-tag"
+                style="
+                  background-color: #22c55e;
+                  color: var(--white);
+                  margin-bottom: 1rem;
+                "
+              >
+                <i class="fas fa-plus-circle"></i> Modal Internal
+              </span>
+              <h3
+                style="
+                  font-weight: 800;
+                  font-size: 1.4rem;
+                  color: var(--dark-navy);
+                  margin-bottom: 1rem;
+                "
+              >
+                Kekuatan yang Saya Miliki
+              </h3>
+              <p
+                style="
+                  line-height: 1.7;
+                  text-align: justify;
+                  font-size: 0.92rem;
+                  color: var(--slate-gray);
+                "
+              >
+                Berdasarkan pengalaman selama PPL Terbimbing, saya melihat bahwa
+                salah satu kekuatan yang saya miliki adalah kemampuan dalam
+                memanfaatkan teknologi untuk mendukung pembelajaran, sehingga
+                materi dapat disajikan lebih menarik dan relevan dengan
+                kehidupan murid. Selain itu, saya memiliki kemauan belajar yang
+                tinggi, terbuka terhadap masukan dari Guru Pamong maupun Dosen
+                Pembimbing Lapangan, serta berusaha membangun hubungan yang
+                positif dengan murid. Kekuatan-kekuatan tersebut menjadi modal
+                awal yang membantu saya berkembang menuju guru profesional.
+              </p>
+            </div>
+            <div
+              style="
+                background-color: #f0fdf4;
+                border: 1px solid #bbf7d0;
+                border-radius: 12px;
+                padding: 1rem;
+                margin-top: 1.5rem;
+                display: flex;
+                gap: 10px;
+                align-items: flex-start;
+              "
+            >
+              <i
+                class="fas fa-check-double"
+                style="color: #22c55e; margin-top: 3px"
+              ></i>
+              <span style="font-size: 0.8rem; color: #166534; font-weight: 600"
+                >Kemampuan pemanfataan teknologi, keterbukaan diri, dan
+                kedekatan emosional hangat dengan murid.</span
+              >
+            </div>
+          </div>
+
+          <!-- Card 6: Kelemahan dan Area yang Perlu Dikembangkan -->
+          <div
+            class="card"
+            style="
+              border-top: 5px solid #eab308;
+              border-radius: 20px;
+              padding: 2.2rem;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <span
+                class="analysis-tag"
+                style="
+                  background-color: #eab308;
+                  color: var(--white);
+                  margin-bottom: 1rem;
+                "
+              >
+                <i class="fas fa-exclamation-triangle"></i> Ruang Evaluasi
+              </span>
+              <h3
+                style="
+                  font-weight: 800;
+                  font-size: 1.4rem;
+                  color: var(--dark-navy);
+                  margin-bottom: 1rem;
+                "
+              >
+                Kelemahan & Area Pengembangan
+              </h3>
+              <p
+                style="
+                  line-height: 1.7;
+                  text-align: justify;
+                  font-size: 0.92rem;
+                  color: var(--slate-gray);
+                "
+              >
+                Di sisi lain, pengalaman PPL juga membantu saya menyadari
+                beberapa aspek yang masih perlu ditingkatkan. Saya masih perlu
+                mengembangkan kemampuan dalam mengelola waktu pembelajaran
+                secara lebih efektif, memperkuat penerapan asesmen autentik dan
+                pembelajaran berdiferensiasi, serta memperkaya variasi strategi
+                pembelajaran yang mampu mengakomodasi kebutuhan belajar peserta
+                didik yang beragam. Kesadaran terhadap kelemahan ini menjadi
+                bahan refleksi yang penting agar saya terus berkembang dan tidak
+                berhenti pada kemampuan yang sudah dimiliki saat ini.
+              </p>
+            </div>
+            <div
+              style="
+                background-color: #fef9c3;
+                border: 1px solid #fef08a;
+                border-radius: 12px;
+                padding: 1rem;
+                margin-top: 1.5rem;
+                display: flex;
+                gap: 10px;
+                align-items: flex-start;
+              "
+            >
+              <i
+                class="fas fa-tools"
+                style="color: #ca8a04; margin-top: 3px"
+              ></i>
+              <span style="font-size: 0.8rem; color: #854d0e; font-weight: 600"
+                >Area peningkatan: pengelolaan alokasi waktu kelas, asesmen
+                autentik, dan diferensiasi murid.</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOK 4: RENCANA TINDAK LANJUT (Card 7) -->
+        <div
+          class="card"
+          style="
+            background: var(--light-blue);
+            border: 1.5px dashed rgba(29, 78, 216, 0.25);
+            padding: 2.5rem;
+            border-radius: 24px;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              margin-bottom: 1.5rem;
+            "
+          >
+            <div
+              class="inst-icon"
+              style="background-color: var(--white); color: var(--primary-blue)"
+            >
+              <i class="fas fa-route"></i>
+            </div>
+            <div>
+              <h4
+                style="
+                  font-weight: 800;
+                  color: var(--primary-blue);
+                  font-size: 1.3rem;
+                "
+              >
+                Rencana Tindak Lanjut
+              </h4>
+              <p style="font-size: 0.85rem; color: var(--slate-gray)">
+                Strategi aksi pengembangan profesi berkelanjutan
+              </p>
+            </div>
+          </div>
+
+          <p
+            style="
+              text-align: justify;
+              line-height: 1.8;
+              color: var(--dark-navy);
+              font-size: 0.98rem;
+              margin-bottom: 2rem;
+            "
+          >
+            Sebagai upaya mewujudkan model guru yang saya cita-citakan, saya
+            berkomitmen untuk terus melakukan pengembangan diri melalui berbagai
+            kegiatan profesional. Saya berencana mengikuti pelatihan dan webinar
+            pendidikan, memperdalam penerapan pembelajaran berdiferensiasi,
+            mengembangkan media pembelajaran berbasis teknologi, aktif dalam
+            komunitas belajar guru, serta membiasakan diri melakukan refleksi
+            dan penelitian sederhana terhadap praktik pembelajaran yang saya
+            laksanakan. Melalui langkah-langkah tersebut, saya berharap dapat
+            terus meningkatkan kompetensi dan kualitas diri sebagai guru yang
+            profesional, adaptif, dan relevan dengan kebutuhan pendidikan abad
+            ke-21.
+          </p>
+
+          <!-- 5-Step Action Roadmap -->
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(5, 1fr);
+              gap: 1rem;
+            "
+          >
+            <div
+              style="
+                background-color: var(--white);
+                padding: 1rem;
+                border-radius: 16px;
+                border: 1px solid var(--border-color);
+                text-align: center;
+              "
+            >
+              <span
+                style="
+                  width: 30px;
+                  height: 30px;
+                  background-color: var(--primary-blue);
+                  color: var(--white);
+                  border-radius: 50%;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: bold;
+                  font-size: 0.85rem;
+                  margin-bottom: 0.5rem;
+                "
+                >1</span
+              >
+              <h5
+                style="
+                  font-size: 0.85rem;
+                  font-weight: 800;
+                  color: var(--dark-navy);
+                "
+              >
+                Pelatihan & Webinar
+              </h5>
+            </div>
+            <div
+              style="
+                background-color: var(--white);
+                padding: 1rem;
+                border-radius: 16px;
+                border: 1px solid var(--border-color);
+                text-align: center;
+              "
+            >
+              <span
+                style="
+                  width: 30px;
+                  height: 30px;
+                  background-color: var(--primary-blue);
+                  color: var(--white);
+                  border-radius: 50%;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: bold;
+                  font-size: 0.85rem;
+                  margin-bottom: 0.5rem;
+                "
+                >2</span
+              >
+              <h5
+                style="
+                  font-size: 0.85rem;
+                  font-weight: 800;
+                  color: var(--dark-navy);
+                "
+              >
+                Pendalaman Diferensiasi
+              </h5>
+            </div>
+            <div
+              style="
+                background-color: var(--white);
+                padding: 1rem;
+                border-radius: 16px;
+                border: 1px solid var(--border-color);
+                text-align: center;
+              "
+            >
+              <span
+                style="
+                  width: 30px;
+                  height: 30px;
+                  background-color: var(--primary-blue);
+                  color: var(--white);
+                  border-radius: 50%;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: bold;
+                  font-size: 0.85rem;
+                  margin-bottom: 0.5rem;
+                "
+                >3</span
+              >
+              <h5
+                style="
+                  font-size: 0.85rem;
+                  font-weight: 800;
+                  color: var(--dark-navy);
+                "
+              >
+                Media Pembelajaran Berbasis Teknologi
+              </h5>
+            </div>
+            <div
+              style="
+                background-color: var(--white);
+                padding: 1rem;
+                border-radius: 16px;
+                border: 1px solid var(--border-color);
+                text-align: center;
+              "
+            >
+              <span
+                style="
+                  width: 30px;
+                  height: 30px;
+                  background-color: var(--primary-blue);
+                  color: var(--white);
+                  border-radius: 50%;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: bold;
+                  font-size: 0.85rem;
+                  margin-bottom: 0.5rem;
+                "
+                >4</span
+              >
+              <h5
+                style="
+                  font-size: 0.85rem;
+                  font-weight: 800;
+                  color: var(--dark-navy);
+                "
+              >
+                Komunitas Praktisi
+              </h5>
+            </div>
+            <div
+              style="
+                background-color: var(--white);
+                padding: 1rem;
+                border-radius: 16px;
+                border: 1px solid var(--border-color);
+                text-align: center;
+              "
+            >
+              <span
+                style="
+                  width: 30px;
+                  height: 30px;
+                  background-color: var(--primary-blue);
+                  color: var(--white);
+                  border-radius: 50%;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: bold;
+                  font-size: 0.85rem;
+                  margin-bottom: 0.5rem;
+                "
+                >5</span
+              >
+              <h5
+                style="
+                  font-size: 0.85rem;
+                  font-weight: 800;
+                  color: var(--dark-navy);
+                "
+              >
+                Riset & Refleksi
+              </h5>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             12. NEW PAGE SECTION: REFLEKSI AKHIR PPLT (BARU)
+             ========================================== -->
+      <section id="refleksi-pplt" class="page-section">
+        <div class="section-title-wrapper">
+          <h2>Refleksi Akhir Praktik Pengalaman Lapangan Terbimbing (PPLT)</h2>
+          <p>
+            Analisis kritis, evaluasi personal, dan proyeksi perbaikan
+            komprehensif pasca-tahapan bimbingan.
+          </p>
+        </div>
+
+        <!-- Tiga pertanyaan refleksi disusun horizontal agar seimbang & estetik -->
+        <div class="refleksi-container">
+          <!-- Pertanyaan 1 -->
+          <div class="refleksi-card">
+            <div>
+              <span
+                class="analysis-tag"
+                style="background-color: var(--primary-blue)"
+              >
+                <i class="fas fa-graduation-cap"></i> Esensi Pembelajaran
+              </span>
+              <h3 class="refleksi-title">
+                1. Pembelajaran Selama Tahapan PPL Terbimbing
+              </h3>
+              <p class="refleksi-text">
+                Selama tahapan PPL Terbimbing dari awal hingga akhir, saya telah
+                menginternalisasi bahwa esensi guru tidak sekadar mengajar,
+                melainkan mengorkestrasi lingkungan belajar yang aman dan
+                berpihak pada murid. Saya belajar menerapkan asesmen diagnostik
+                secara riil, memetakan karakteristik murid yang beragam, serta
+                merancang sintaks pembelajaran yang menuntut nalar kritis
+                melalui PBL dan PjBL. Proses bimbingan ini menempa keterampilan
+                interpersonal saya dalam berkolaborasi dengan sejawat, Guru
+                Pamong, dan DPL untuk rekonstruksi perangkat ajar demi kualitas
+                pembelajaran yang terus meningkat.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pertanyaan 2 -->
+          <div class="refleksi-card">
+            <div>
+              <span class="analysis-tag" style="background-color: #ef4444">
+                <i class="fas fa-shield-alt"></i> Tantangan & Solusi
+              </span>
+              <h3 class="refleksi-title">
+                2. Pengalaman Menantang & Solusi Strategis
+              </h3>
+              <p class="refleksi-text">
+                Tantangan terbesar selama PPL adalah mengelola waktu
+                pembelajaran, menjaga keterlibatan seluruh murid, serta
+                menyesuaikan strategi pembelajaran dengan kondisi kelas yang
+                dinamis. Situasi tersebut mengajarkan saya pentingnya
+                fleksibilitas dan kemampuan mengambil keputusan secara cepat
+                saat pembelajaran berlangsung.
+                <br /><br />
+                <strong>Solusinya:</strong> Untuk mengatasi hal tersebut, saya
+                rutin melakukan refleksi pasca-pembelajaran, memperbaiki
+                perangkat ajar, berdiskusi dengan Guru Pamong/DPL, serta
+                menyiapkan strategi cadangan jika rencana utama tidak berjalan
+                lancar.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pertanyaan 3 -->
+          <div class="refleksi-card">
+            <div>
+              <span class="analysis-tag" style="background-color: #eab308">
+                <i class="fas fa-comment-dots"></i> Umpan Balik Konstruktif
+              </span>
+              <h3 class="refleksi-title">
+                3. Umpan Balik Akhir untuk PPL Mandiri
+              </h3>
+              <p class="refleksi-text">
+                Dalam diskusi refleksi akhir, Guru Pamong dan DPL memberikan
+                apresiasi terhadap peningkatan penguasaan kelas dan
+                adaptabilitas digital saya. Namun, terdapat saran konstruktif
+                yang ditekankan sebagai modal menuju PPL Mandiri, yaitu:
+                meningkatkan manajemen waktu, memperkuat asesmen pembelajaran,
+                serta memperluas variasi aktivitas yang mampu mengakomodasi
+                kebutuhan belajar murid. Umpan balik ini sangat berharga untuk
+                membangun kemandirian penuh saya dalam merumuskan keputusan
+                instruksional yang cepat dan bijak di kelas esok hari.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Evaluasi Diri & RTL dengan Grid Sempurna -->
+        <div class="grid-2" style="margin-top: 2rem">
+          <!-- Card Evaluasi Diri -->
+          <div
+            class="card"
+            style="
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <h3 style="margin-bottom: 1.25rem">
+                <i class="fas fa-balance-scale text-primary"></i> Analisis
+                Evaluasi Diri
+              </h3>
+              <div style="display: flex; flex-direction: column; gap: 1rem">
+                <div class="premium-box premium-success">
+                  <i class="fas fa-check-circle"></i>
+                  <div>
+                    <strong>Kekuatan:</strong> Memiliki kemampuan dalam
+                    memanfaatkan teknologi inovatif dan membangun hubungan
+                    interpersonal yang positif serta hangat dengan murid.
+                  </div>
+                </div>
+                <div class="premium-box premium-danger">
+                  <i class="fas fa-times-circle"></i>
+                  <div>
+                    <strong>Kekurangan:</strong> Terkadang masih menghadapi
+                    kendala manajemen durasi waktu di sela diskusi dan
+                    memerlukan lebih banyak jam terbang beradaptasi dengan
+                    berbagai keunikan atmosfer kelas.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card RTL -->
+          <div
+            class="card"
+            style="
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <h3 style="margin-bottom: 1.25rem">
+                <i class="fas fa-map-signs text-accent"></i> Rencana Tindak
+                Lanjut (RTL)
+              </h3>
+              <div class="premium-box premium-info" style="height: auto">
+                <i class="fas fa-arrow-circle-right"></i>
+                <div>
+                  <strong>Komitmen Tindak Lanjut:</strong><br />
+                  Sebagai langkah pengembangan diri ke depan, saya berkomitmen
+                  untuk terus memperluas khazanah keilmuan, aktif berpartisipasi
+                  dalam pengembangan profesional (pelatihan & MGMP), serta
+                  secara konsisten melakukan refleksi kritis berkelanjutan. Hal
+                  ini bertujuan agar saya mampu bertransformasi menjadi guru
+                  Informatika yang jauh lebih kompeten, adaptif, dan berwibawa
+                  pada fase PPL Mandiri hingga karir profesional di masa depan.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             13. NEW PAGE SECTION: FILOSOFI MENGAJAR (BARU)
+             ========================================== -->
+      <section id="filosofi-mengajar" class="page-section">
+        <div class="section-title-wrapper">
+          <h2>Filosofi Mengajar Saya</h2>
+          <p>
+            Manifestasi ideologi, keyakinan pedagogis, serta nilai dasar
+            perjalanan saya menuju profesi guru Informatika.
+          </p>
+        </div>
+
+        <!-- BLOK 1: Fondasi Filosofi (Ki Hadjar Dewantara) -->
+        <div class="filosofi-hero-card">
+          <div class="filosofi-grid-two">
+            <div style="display: flex; flex-direction: column; gap: 1rem">
+              <span
+                class="analysis-tag"
+                style="
+                  background-color: var(--primary-blue);
+                  align-self: flex-start;
+                "
+              >
+                <i class="fas fa-seedling"></i> Esensi & Peran Pendidik
+              </span>
+              <div class="filosofi-quote-accent">
+                "Pendidikan adalah menuntun segala kodrat yang ada pada
+                anak-anak, agar mereka dapat mencapai keselamatan dan
+                kebahagiaan yang setinggi-tingginya."
+              </div>
+              <p
+                style="
+                  font-size: 0.85rem;
+                  color: var(--slate-gray);
+                  font-weight: 600;
+                  padding-left: 1.5rem;
+                "
+              >
+                — Adaptasi Pemikiran Ki Hadjar Dewantara
+              </p>
+            </div>
+            <div>
+              <p
+                style="
+                  text-align: justify;
+                  line-height: 1.8;
+                  color: var(--dark-navy);
+                  font-size: 0.98rem;
+                "
+              >
+                Selama mengikuti Praktik Pengalaman Lapangan (PPL) Terbimbing di
+                <strong>SMPN 25 Padang</strong>, saya semakin memahami bahwa
+                menjadi guru bukan hanya tentang menyampaikan materi
+                pembelajaran, tetapi tentang membangun pengalaman belajar yang
+                mampu membantu murid berkembang secara utuh. Pengalaman
+                observasi, asistensi, dan praktik mengajar memberikan pemahaman
+                bahwa setiap murid memiliki karakteristik, kemampuan, minat,
+                serta kebutuhan belajar yang berbeda. Oleh karena itu, saya
+                meyakini bahwa tugas utama seorang guru adalah
+                <strong>menuntun dan memfasilitasi proses belajar</strong> murid
+                agar mereka dapat berkembang sesuai potensi yang dimiliki.
+                Keyakinan ini sejalan dengan pemikiran Ki Hadjar Dewantara yang
+                menempatkan guru sebagai pamong yang membimbing murid sesuai
+                kodrat alam dan kodrat zamannya. Dalam praktik pembelajaran yang
+                saya lakukan, keyakinan tersebut diwujudkan melalui upaya
+                memahami karakteristik murid terlebih dahulu sebelum merancang
+                pembelajaran, sehingga kegiatan belajar yang dilaksanakan lebih
+                relevan dengan kebutuhan mereka.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOK 2: Paradigma Belajar Informatika Abad 21 -->
+        <div class="card" style="margin-bottom: 2.5rem; padding: 2.5rem">
+          <div style="text-align: center; margin-bottom: 2rem">
+            <span
+              class="analysis-tag"
+              style="background-color: var(--accent-pink)"
+            >
+              <i class="fas fa-laptop-code"></i> Pembelajaran Abad ke-21
+            </span>
+            <h3
+              style="
+                margin-top: 0.5rem;
+                font-weight: 800;
+                color: var(--dark-navy);
+              "
+            >
+              4 Pilar Karakter Kompetensi Informatika
+            </h3>
+          </div>
+
+          <!-- Grid Pilar agar menarik dibaca -->
+          <div class="filosofi-pilar-grid">
+            <div class="filosofi-pilar-item">
+              <i class="fas fa-brain"></i>
+              <h5>Berpikir Kritis</h5>
+            </div>
+            <div class="filosofi-pilar-item">
+              <i class="fas fa-lightbulb"></i>
+              <h5>Kreatif Inovatif</h5>
+            </div>
+            <div class="filosofi-pilar-item">
+              <i class="fas fa-users"></i>
+              <h5>Kolaboratif</h5>
+            </div>
+            <div class="filosofi-pilar-item">
+              <i class="fas fa-user-shield"></i>
+              <h5>Karakter Digital</h5>
+            </div>
+          </div>
+
+          <p
+            style="
+              text-align: justify;
+              line-height: 1.8;
+              color: var(--dark-navy);
+              font-size: 0.98rem;
+            "
+          >
+            Sebagai calon guru Informatika, saya percaya bahwa pembelajaran
+            tidak boleh hanya berorientasi pada penguasaan pengetahuan dan
+            keterampilan teknis. Pembelajaran harus mampu membentuk murid
+            menjadi individu yang kritis, kreatif, kolaboratif, serta memiliki
+            karakter yang baik dalam kehidupan nyata maupun dunia digital.
+            Pengalaman mengajar materi mengenai toleransi dan empati di dunia
+            digital semakin menguatkan keyakinan saya bahwa pendidikan memiliki
+            peran penting dalam membentuk cara berpikir dan perilaku murid. Oleh
+            karena itu, saya berusaha menghadirkan pembelajaran yang memberikan
+            kesempatan kepada murid untuk berdiskusi, berkolaborasi, memecahkan
+            masalah, dan merefleksikan pengalaman belajarnya. Pendekatan ini
+            selaras dengan <strong>teori konstruktivisme</strong> yang memandang
+            bahwa pengetahuan dibangun secara aktif oleh murid melalui
+            pengalaman dan interaksi sosial, serta prinsip pembelajaran mendalam
+            yang menekankan pembelajaran berkesadaran, bermakna, dan
+            menggembirakan.
+          </p>
+        </div>
+
+        <!-- BLOK 3: Refleksi Kekuatan & Kelemahan Diri -->
+        <div class="grid-2" style="margin-bottom: 2.5rem">
+          <!-- Card Kekuatan -->
+          <div
+            class="card"
+            style="
+              border-top: 5px solid #22c55e;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <span
+                class="analysis-tag"
+                style="background-color: #22c55e; margin-bottom: 1.25rem"
+              >
+                <i class="fas fa-check-circle"></i> Kekuatan Internal
+              </span>
+              <p
+                style="
+                  text-align: justify;
+                  line-height: 1.8;
+                  color: var(--dark-navy);
+                  font-size: 0.98rem;
+                  margin-top: 0.5rem;
+                "
+              >
+                Melalui pengalaman PPL Terbimbing, saya menyadari bahwa saya
+                memiliki beberapa kekuatan yang mendukung proses pembelajaran,
+                seperti <strong>kemampuan memanfaatkan teknologi</strong> dalam
+                pembelajaran, kemauan keras untuk terus belajar, serta kemampuan
+                membangun
+                <strong>hubungan interpersonal yang positif dan hangat</strong>
+                dengan murid.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card Kelemahan -->
+          <div
+            class="card"
+            style="
+              border-top: 5px solid #ef4444;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <span
+                class="analysis-tag"
+                style="background-color: #ef4444; margin-bottom: 1.25rem"
+              >
+                <i class="fas fa-exclamation-triangle"></i> Aspek Kelemahan
+              </span>
+              <p
+                style="
+                  text-align: justify;
+                  line-height: 1.8;
+                  color: var(--dark-navy);
+                  font-size: 0.98rem;
+                  margin-top: 0.5rem;
+                "
+              >
+                Namun, saya juga menyadari masih terdapat kelemahan yang perlu
+                terus diperbaiki, terutama dalam
+                <strong>pengelolaan alokasi waktu pembelajaran</strong>,
+                penguatan teknik asesmen yang lebih komprehensif, dan
+                pengembangan strategi pembelajaran berdiferensiasi untuk
+                mengakomodasi kebutuhan belajar yang semakin beragam. Kesadaran
+                ini adalah kompas refleksi saya menuju guru profesional.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOK 4: Komitmen Belajar Sepanjang Hayat -->
+        <div
+          class="card"
+          style="
+            background: var(--light-blue);
+            border: 1.5px dashed rgba(29, 78, 216, 0.25);
+            padding: 2.5rem;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              margin-bottom: 1.5rem;
+            "
+          >
+            <div
+              class="inst-icon"
+              style="background-color: var(--white); color: var(--primary-blue)"
+            >
+              <i class="fas fa-infinity"></i>
+            </div>
+            <div>
+              <h4
+                style="
+                  font-weight: 800;
+                  color: var(--primary-blue);
+                  font-size: 1.3rem;
+                "
+              >
+                Komitmen & Visi Pembelajar Sepanjang Hayat
+              </h4>
+              <p style="font-size: 0.85rem; color: var(--slate-gray)">
+                Rencana pengembangan profesional berkelanjutan
+              </p>
+            </div>
+          </div>
+
+          <p
+            style="
+              text-align: justify;
+              line-height: 1.8;
+              color: var(--dark-navy);
+              font-size: 0.98rem;
+              margin-bottom: 2rem;
+            "
+          >
+            Ke depan, saya berkomitmen untuk terus mengembangkan kompetensi
+            pedagogik, profesional, sosial, dan kepribadian melalui berbagai
+            kegiatan pengembangan diri, seperti mengikuti pelatihan, bergabung
+            dalam komunitas belajar guru, mempelajari inovasi pembelajaran
+            berbasis teknologi, serta membiasakan diri melakukan refleksi
+            berkelanjutan terhadap setiap praktik pembelajaran yang saya
+            lakukan. Saya meyakini bahwa guru profesional adalah
+            <strong>pembelajar sepanjang hayat (lifelong learner)</strong> yang
+            senantiasa memperbaiki diri demi memberikan pengalaman belajar
+            terbaik bagi muridnya. Filosofi inilah yang akan menjadi landasan,
+            arah, dan ideologi saya dalam menjalani perjalanan sebagai seorang
+            pendidik.
+          </p>
+
+          <!-- Peta Langkah Komitmen Fisik -->
+          <div class="horizontal-timeline" style="margin-top: 1rem">
+            <div class="ht-node" style="padding: 1.2rem">
+              <div
+                class="ht-badge"
+                style="
+                  background-color: var(--primary-blue);
+                  width: 35px;
+                  height: 35px;
+                  font-size: 0.9rem;
+                "
+              >
+                1
+              </div>
+              <h5 style="font-weight: 700; font-size: 0.95rem">
+                Eksplorasi Inovasi
+              </h5>
+              <p
+                style="
+                  font-size: 0.8rem;
+                  color: var(--slate-gray);
+                  margin-top: 0.25rem;
+                "
+              >
+                Mengikuti pelatihan IT dan berinovasi secara mandiri.
+              </p>
+            </div>
+            <div class="ht-node" style="padding: 1.2rem">
+              <div
+                class="ht-badge"
+                style="
+                  background-color: var(--primary-blue);
+                  width: 35px;
+                  height: 35px;
+                  font-size: 0.9rem;
+                "
+              >
+                2
+              </div>
+              <h5 style="font-weight: 700; font-size: 0.95rem">
+                Komunitas Praktisi
+              </h5>
+              <p
+                style="
+                  font-size: 0.8rem;
+                  color: var(--slate-gray);
+                  margin-top: 0.25rem;
+                "
+              >
+                Bergabung dalam MGMP Informatika & forum belajar keguruan.
+              </p>
+            </div>
+            <div class="ht-node" style="padding: 1.2rem">
+              <div
+                class="ht-badge"
+                style="
+                  background-color: var(--primary-blue);
+                  width: 35px;
+                  height: 35px;
+                  font-size: 0.9rem;
+                "
+              >
+                3
+              </div>
+              <h5 style="font-weight: 700; font-size: 0.95rem">
+                Refleksi Rutin
+              </h5>
+              <p
+                style="
+                  font-size: 0.8rem;
+                  color: var(--slate-gray);
+                  margin-top: 0.25rem;
+                "
+              >
+                Melakukan evaluasi harian berbasis umpan balik murid secara
+                konsisten.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div
+        class="nav-container"
+        style="justify-content: center; flex-direction: column; gap: 1rem"
+      >
+        <p>
+          &copy; 2026 Putri Fadhilah Roslin, S.Kom. | All Rights Reserved.
+          Portofolio PPG Prajabatan 2026.
+        </p>
+      </div>
+    </footer>
+
+    <!-- JAVASCRIPT ENGINES -->
+    <script>
+      // SINGLE PAGE APPLICATION (SPA) NAVIGATION
+      function switchPage(pageId) {
+        // JIKA YANG DIKLIK ADALAH ANALISIS ARTEFAK DARI SUBNAV
+        if (pageId === "analisis-artefak") {
+          // 1. Arahkan dulu ke halaman induk artefak
+          const sections = document.querySelectorAll(".page-section");
+          sections.forEach((section) => {
+            section.classList.remove("active");
+          });
+
+          const induk = document.getElementById("artefak-induk");
+          if (induk) {
+            induk.classList.add("active");
+          }
+
+          // 2. Berikan sedikit jeda agar halaman induk aktif, lalu gulirkan otomatis ke posisi judul
+          setTimeout(() => {
+            const targetJudul = document.getElementById(
+              "analisis-artefak-judul",
+            );
+            if (targetJudul) {
+              targetJudul.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          }, 100);
+
+          // Tandai subnav aktif
+          const navLinks = document.querySelectorAll(".nav-link");
+          navLinks.forEach((link) => {
+            link.classList.remove("active");
+          });
+          const dropdownToggle = document.getElementById("dropdownToggle");
+          if (dropdownToggle) {
+            dropdownToggle.classList.add("active");
+          }
+          return;
+        }
+
+        // UNTUK HALAMAN SPA LAINNYA
+        const sections = document.querySelectorAll(".page-section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const targetSection = document.getElementById(pageId);
+        if (targetSection) {
+          targetSection.classList.add("active");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        const navLinks = document.querySelectorAll(".nav-link");
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+        });
+
+        const activeLink = Array.from(navLinks).find((link) =>
+          link.getAttribute("onclick")?.includes(pageId),
+        );
+        if (activeLink) {
+          activeLink.classList.add("active");
+        }
+
+        const isDropdownChild = [
+          "artefak-induk",
+          "siklus1",
+          "siklus2",
+          "siklus3",
+          "profiling",
+          "logbook",
+          "kunjungan-dpl",
+        ].includes(pageId);
+        const dropdownToggle = document.getElementById("dropdownToggle");
+        if (isDropdownChild && dropdownToggle) {
+          dropdownToggle.classList.add("active");
+        }
+
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("navMenu");
+        if (hamburger && hamburger.classList.contains("active")) {
+          hamburger.classList.remove("active");
+          navMenu.classList.remove("active");
+        }
+      }
+
+      // MOBILE HAMBURGER MENU ACTIONS
+      document
+        .getElementById("hamburger")
+        .addEventListener("click", function () {
+          this.classList.toggle("active");
+          document.getElementById("navMenu").classList.toggle("active");
+        });
+
+      document
+        .getElementById("dropdownToggle")
+        .addEventListener("click", function (e) {
+          if (window.innerWidth <= 768) {
+            e.preventDefault();
+            document
+              .getElementById("dropdownContainer")
+              .classList.toggle("active");
+          }
+        });
+
+      // STICKY HEADER ON SCROLL
+      window.addEventListener("scroll", function () {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("shrink");
+        } else {
+          navbar.classList.remove("shrink");
+        }
+      });
+    </script>
+  </body>
+</html>
